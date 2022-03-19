@@ -4,8 +4,6 @@ import vue from "@vitejs/plugin-vue";
 // eslint-disable-next-line import/order
 import { resolve } from "path";
 import autoImport from "unplugin-auto-import/vite";
-import IconsResolver from "unplugin-icons/resolver";
-import icons from "unplugin-icons/vite";
 import components from "unplugin-vue-components/vite";
 import { defineConfig } from "vite";
 
@@ -24,8 +22,9 @@ export default defineConfig({
     }),
     components({
       extensions: [".vue"],
-      dts: "src/auto-components.d.ts",
-      resolvers: [IconsResolver()],
+      dts: true,
+      dirs: ["src/components", "src/views"],
+      deep: true,
     }),
     autoImport({
       imports: ["vue", "@vueuse/core", "@vueuse/head", "pinia", "vue-router", "vue-i18n", "quasar"],
@@ -36,9 +35,8 @@ export default defineConfig({
       compositionOnly: true,
       include: [resolve(__dirname, "locales/**")],
     }),
-    icons({
-      autoInstall: true,
+    quasar({
+      sassVariables: "src/styles/variables.scss",
     }),
-    quasar(),
   ],
 });

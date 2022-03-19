@@ -12,11 +12,11 @@ export const config = {
       position: "top",
     },
     brand: {
-      primary: "#69e09b",
+      primary: "#37944c",
       secondary: "#26A69A",
       accent: "#9C27B0",
 
-      dark: "#2b2525",
+      dark: "#24202000",
 
       positive: "#46ab5e",
       negative: "#cf727c",
