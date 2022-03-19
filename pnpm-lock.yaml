@@ -15,7 +15,6 @@ specifiers:
   eslint: ^8.11.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.0.0
-  nprogress: ^0.2.0
   pinia: ^2.0.12
   prettier: ^2.6.0
   quasar: ^2.6.1
@@ -52,7 +51,6 @@ devDependencies:
   eslint: 8.11.0
   eslint-config-prettier: 8.5.0_eslint@8.11.0
   eslint-plugin-prettier: 4.0.0_68edcf5670f37721baf5d2cac6124e4d
-  nprogress: 0.2.0
   prettier: 2.6.0
   sass: 1.32.0
   typescript: 4.6.2
@@ -2586,10 +2584,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-key: 3.1.1
-    dev: true
-
-  /nprogress/0.2.0:
-    resolution: {integrity: sha1-y480xTIT2JVyP8urkH6UIq28r7E=}
     dev: true
 
   /object-assign/4.1.1:
