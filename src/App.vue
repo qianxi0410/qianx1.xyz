@@ -1,7 +1,20 @@
 <script setup lang="ts">
 useHead({
   title: `${import.meta.env.APP_TITLE}`,
-  meta: [{ name: "description", content: "qianxi's blog" }],
+  meta: [
+    { name: "description", content: "qianxi's blog" },
+    { name: "keywords", content: "qianxi, blog" },
+    {
+      property: "og:locale:alternate",
+      content: "zh",
+      key: "zh",
+    },
+    {
+      property: "og:locale:alternate",
+      content: "en",
+      key: "en",
+    },
+  ],
 });
 </script>
 
