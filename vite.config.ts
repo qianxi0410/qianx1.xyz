@@ -39,8 +39,6 @@ export default defineConfig({
     icons({
       autoInstall: true,
     }),
-    quasar({
-      sassVariables: "src/styles/variables.sass",
-    }),
+    quasar(),
   ],
 });

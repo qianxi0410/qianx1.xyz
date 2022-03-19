@@ -7,9 +7,21 @@ export const config = {
   },
   config: {
     loadingBar: {
-      color: "green",
+      color: "primary",
       size: "0.24rem",
       position: "top",
+    },
+    brand: {
+      primary: "#69e09b",
+      secondary: "#26A69A",
+      accent: "#9C27B0",
+
+      dark: "#2b2525",
+
+      positive: "#46ab5e",
+      negative: "#cf727c",
+      info: "#9db7bd",
+      warning: "#c9a542",
     },
   },
 };
