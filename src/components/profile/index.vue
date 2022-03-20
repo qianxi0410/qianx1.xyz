@@ -16,7 +16,7 @@
     </div>
     <!-- desc -->
     <div class="row justify-center q-mt-md text-grey-7" style="font-size: 1.2em">
-      <div class="col-md-6 col-xs-11">
+      <div class="col-md-6 col-sm-9 col-xs-11">
         <p style="font-weight: bold; font-size: large">qianxi / qianxi0410 / 千禧.</p>
         <p>
           My name is qianxi. A graduate student of NWPU and expected to graduate in 2024 spring.
@@ -42,7 +42,7 @@
     <br />
     <!-- copyright -->
     <div class="row justify-center q-mt-auto">
-      <div class="col-md-6 text-body2 col-xs-11 text-grey-6">
+      <div class="col-md-6 col-sm-9 text-body2 col-xs-11 text-grey-6">
         <span style="font-family: arial">&copy;</span>qianxi 2022 - {{ new Date().getFullYear() }}
         <a href="https://beian.miit.gov.cn">陕ICP备2021012752号</a>
       </div>
