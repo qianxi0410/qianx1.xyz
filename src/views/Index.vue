@@ -1,13 +1,8 @@
-<script lang="ts" setup>
-import Banner from "../components/banner/index.vue";
-import Profile from "../components/profile/index.vue";
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <Banner />
   <q-page padding>
+    <Banner />
     <Profile />
   </q-page>
 </template>
-
-<style lang="sass"></style>

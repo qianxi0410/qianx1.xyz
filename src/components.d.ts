@@ -2,13 +2,13 @@
 // We suggest you to commit this file into source control
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
-declare module "vue" {
+declare module 'vue' {
   export interface GlobalComponents {
-    Banner: typeof import("./components/banner/index.vue")["default"];
-    Blossom: typeof import("./components/blossom/index.vue")["default"];
-    Index: typeof import("./views/Index.vue")["default"];
-    Profile: typeof import("./components/profile/index.vue")["default"];
+    Banner: typeof import('./components/banner/index.vue')['default']
+    Blossom: typeof import('./components/blossom/index.vue')['default']
+    Index: typeof import('./views/Index.vue')['default']
+    Profile: typeof import('./components/profile/index.vue')['default']
   }
 }
 
-export {};
+export { }

@@ -1,11 +1,21 @@
 <script lang="ts" setup>
 import {
   evaGithubOutline,
+  evaGlobe2Outline,
   evaMoonOutline,
   evaPaperPlaneOutline,
   evaSunOutline,
-  evaTwitterOutline,
 } from "@quasar/extras/eva-icons";
+
+const { locale } = useI18n();
+
+const toggleLang = () => {
+  if (locale.value === "en") {
+    locale.value = "zh-CN";
+  } else {
+    locale.value = "en";
+  }
+};
 </script>
 
 <template>
@@ -13,7 +23,7 @@ import {
     <q-btn flat color="grey" :icon="evaPaperPlaneOutline" to="/" label="cd ~" no-caps />
     <template #action>
       <q-btn flat color="grey" :ripple="false" label="blog" to="blog" />
-      <q-btn flat color="grey" :ripple="false" label="next" to="next" />
+      <q-btn flat fab :icon="evaGlobe2Outline" color="grey" :ripple="false" @click="toggleLang" />
       <q-btn
         :icon="evaGithubOutline"
         color="grey"
@@ -21,14 +31,6 @@ import {
         :ripple="false"
         flat
         href="https://www.github.com/qianxi0410"
-      />
-      <q-btn
-        fab
-        :icon="evaTwitterOutline"
-        :ripple="false"
-        color="grey"
-        flat
-        href="https://twitter.com/qianxi0410"
       />
       <q-btn
         fab

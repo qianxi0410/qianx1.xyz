@@ -1,2 +1,9 @@
-first: My name is qianxi => :d
-second: This is a scaffold project for myself vue app
+profile:
+  motto: MAKE THINGS HAPPEN.
+  welcome: Hello.
+  intro: My name is qianxi. A graduate student of NWPU and expected to graduate in 2024 spring.
+  desc: Pursue new technologies, hate scientific research, like to write some useful or interesting little toys, and put them on my <a class="a" href="https://github.com/qianxi0410">GitHub</a>. 
+  status: Currently learning rust, distributed systems. Interested in networking related and DevOps. 
+  findme: Find me on <a class="a" href="https://www.zhihu.com/people/qian-xi-8-12-94">ZhiHu</a> or <a class="a" href="https://twitter.com/qianxi0410">Twitter</a>. 
+  mail: "Mail me at: "
+  name: qiaxni

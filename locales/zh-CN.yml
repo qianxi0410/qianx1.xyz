@@ -1,2 +1,9 @@
-first: 千禧
-second: 这是我的vue项目脚手架
+profile:
+  motto: 一个人的命运呐, 当然要靠自我奋斗, 但是也要考虑到历史的行程.
+  welcome: 你好.
+  intro: 正如你所看到的, 我的网名是 千禧. 是西北工业大学研一学生, 大概会在2024年春天毕业.
+  desc: 追求新的技术, 并且讨厌科研 <del>彻底躺平！</del>. 喜欢写一些没用的东西, 都放在了 <a class="a" href="https://github.com/qianxi0410">GitHub</a> 上. 
+  status: 现在在学习 rust 和 分布式系统, 对网络相关和DevOps相关的东西感兴趣. 
+  findme: 你可以从 <a class="a" href="https://www.zhihu.com/people/qian-xi-8-12-94">知乎</a> 或 <a class="a" href="https://twitter.com/qianxi0410">推特</a> 上找到我. 
+  mail: "邮箱: "
+  name: 千禧

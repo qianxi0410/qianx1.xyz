@@ -15,6 +15,7 @@ useMeta({
 <template>
   <q-layout>
     <q-page-container>
+      <Blossom />
       <router-view />
     </q-page-container>
   </q-layout>
