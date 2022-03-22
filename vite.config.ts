@@ -21,10 +21,8 @@ export default defineConfig({
       template: { transformAssetUrls },
     }),
     components({
-      extensions: [".vue"],
-      dts: true,
+      dts: "src/components.d.ts",
       dirs: ["src/components", "src/views"],
-      deep: true,
     }),
     autoImport({
       imports: ["vue", "@vueuse/core", "@vueuse/head", "pinia", "vue-router", "vue-i18n", "quasar"],
