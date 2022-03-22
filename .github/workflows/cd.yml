@@ -1,0 +1,49 @@
+name: deploy
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - "src/"  
+      - "locales/"
+      - "index.html"
+  pull_request:
+    branches: [ master ]
+    paths:
+      - "src/"  
+      - "locales/"
+      - "index.html"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['16.x', '17.x']
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: pnpm/action-setup@v2.1.0
+      with:
+        version: latest
+        run_install: |
+          - recursive: true
+            args: [--frozen-lockfile, --strict-peer-dependencies]
+          - args: [--global, gulp, prettier, typescript]
+
+    - name: format
+      run: pnpm run prettier
+
+    - name: build 
+      run: pnpm run build
+
+    - name: upload file
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        source: "dist"
+        target: "/root/qianxi.me/"
