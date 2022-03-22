@@ -4,17 +4,17 @@ on:
   push:
     branches: [ master ]
     paths:
-      - "src/"  
-      - "locales/"
+      - "src/*"  
+      - "locales/*"
       - "index.html"
-      - "public/"
+      - "public/*"
   pull_request:
     branches: [ master ]
     paths:
-      - "src/"  
-      - "locales/"
+      - "src/*"  
+      - "locales/*"
       - "index.html"
-      - "public/"
+      - "public/*"
 
 jobs:
   build:
