@@ -1,9 +1,10 @@
-import { LoadingBar } from "quasar";
+import { LoadingBar, Meta } from "quasar";
 import { router } from "./../router/index";
 
 export const config = {
   plugins: {
     LoadingBar,
+    Meta,
   },
   config: {
     loadingBar: {
