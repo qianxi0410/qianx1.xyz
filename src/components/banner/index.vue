@@ -9,7 +9,7 @@ import {
 </script>
 
 <template>
-  <q-banner :class="$q.dark.isActive ? 'bg-dark' : ''">
+  <q-banner style="background-color: rgba(0, 0, 0, 0)">
     <q-btn flat color="grey" :icon="evaPaperPlaneOutline" to="/" label="cd ~" no-caps />
     <template #action>
       <q-btn flat color="grey" :ripple="false" label="blog" to="blog" />
