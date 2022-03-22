@@ -7,12 +7,14 @@ on:
       - "src/"  
       - "locales/"
       - "index.html"
+      - "public/"
   pull_request:
     branches: [ master ]
     paths:
       - "src/"  
       - "locales/"
       - "index.html"
+      - "public/"
 
 jobs:
   build:
