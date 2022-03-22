@@ -25,7 +25,7 @@ export default defineConfig({
       dirs: ["src/components", "src/views"],
     }),
     autoImport({
-      imports: ["vue", "@vueuse/core", "@vueuse/head", "pinia", "vue-router", "vue-i18n", "quasar"],
+      imports: ["vue", "@vueuse/core", "pinia", "vue-router", "vue-i18n", "quasar"],
       dts: "src/auto-imports.d.ts",
     }),
     vueI18n({
