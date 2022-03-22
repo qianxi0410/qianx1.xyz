@@ -1,4 +1,4 @@
-name: deploy
+name: cd
 
 on:
   push:
@@ -33,9 +33,6 @@ jobs:
           - recursive: true
             args: [--frozen-lockfile, --strict-peer-dependencies]
           - args: [--global, gulp, prettier, typescript]
-
-    - name: format
-      run: pnpm run prettier
 
     - name: build 
       run: pnpm run build

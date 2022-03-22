@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['17.x']
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: pnpm/action-setup@v2.1.0
+      with:
+        version: latest
+        run_install: |
+          - recursive: true
+            args: [--frozen-lockfile, --strict-peer-dependencies]
+          - args: [--global, gulp, prettier, typescript]
+
+    - name: check code quality and format
+      run: pnpm run check
+
