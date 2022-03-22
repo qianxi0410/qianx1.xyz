@@ -4,14 +4,14 @@ on:
   push:
     branches: [ master ]
     paths:
-      - "src/*"  
+      - "src/**"  
       - "locales/*"
       - "index.html"
       - "public/*"
   pull_request:
     branches: [ master ]
     paths:
-      - "src/*"  
+      - "src/**"  
       - "locales/*"
       - "index.html"
       - "public/*"
