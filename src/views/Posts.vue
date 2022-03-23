@@ -1,3 +1,5 @@
 <script setup lang="ts"></script>
 
-<template>this is posts page</template>
+<template>
+  <div>12312</div>
+</template>

@@ -7,3 +7,10 @@ profile:
   findme: Find me on <a class="a" href="https://www.zhihu.com/people/qian-xi-8-12-94">ZhiHu</a> or <a class="a" href="https://twitter.com/qianxi0410">Twitter</a>.
   mail: "Mail me at: "
   name: qiaxni
+
+404:
+  welcome: Oops
+  first: You seem to have reached a place of nothingness.
+  second: Who brought you here?
+  third: It's dangerous here, my friend.
+  fourth: You should leave this place as soon as possible.

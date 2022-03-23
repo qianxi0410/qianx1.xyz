@@ -7,3 +7,11 @@ profile:
   findme: 你可以从 <a class="a" href="https://www.zhihu.com/people/qian-xi-8-12-94">知乎</a> 或 <a class="a" href="https://twitter.com/qianxi0410">推特</a> 上找到我.
   mail: "邮箱: "
   name: 千禧
+
+404:
+  welcome: Oops
+  first: 你正在访问一个不存在的界面.
+  second: 这里没有任何你想要的东西.
+  third: 这可能是我的服务器出了问题, 或者是你有意为之.
+  fourth: 当然无论如何, 请立刻回到主页.
+

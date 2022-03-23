@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    404: typeof import('./views/404.vue')['default']
     Banner: typeof import('./components/banner/index.vue')['default']
     Blossom: typeof import('./components/blossom/index.vue')['default']
     Footer: typeof import('./components/footer/index.vue')['default']
