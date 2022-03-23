@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>12312</div>
+  <div>
+    <Posts />
+  </div>
 </template>

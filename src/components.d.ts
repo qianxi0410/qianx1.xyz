@@ -6,10 +6,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     404: typeof import('./views/404.vue')['default']
     Banner: typeof import('./components/banner/index.vue')['default']
+    Blog: typeof import('./views/Blog.vue')['default']
     Blossom: typeof import('./components/blossom/index.vue')['default']
     Footer: typeof import('./components/footer/index.vue')['default']
     Index: typeof import('./views/Index.vue')['default']
-    Posts: typeof import('./views/Posts.vue')['default']
+    Pagination: typeof import('./components/posts/pagination.vue')['default']
+    Post: typeof import('./components/posts/post.vue')['default']
+    Posts: typeof import('./components/posts/index.vue')['default']
     Profile: typeof import('./components/profile/index.vue')['default']
   }
 }

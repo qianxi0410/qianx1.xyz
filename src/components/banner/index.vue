@@ -20,7 +20,15 @@ const toggleLang = () => {
 
 <template>
   <q-banner style="background-color: rgba(0, 0, 0, 0)">
-    <q-btn flat color="grey" :icon="evaPaperPlaneOutline" to="/" label="cd ~" no-caps />
+    <q-btn
+      flat
+      color="grey"
+      :ripple="false"
+      :icon="evaPaperPlaneOutline"
+      to="/"
+      label="cd ~"
+      no-caps
+    />
     <template #action>
       <q-btn flat color="grey" :ripple="false" label="blog" to="/blog" />
       <q-btn flat fab :icon="evaGlobe2Outline" color="grey" :ripple="false" @click="toggleLang" />
