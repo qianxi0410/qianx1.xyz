@@ -13,3 +13,22 @@ const { t } = useI18n();
   </div>
   <br />
 </template>
+
+<style lang="sass" scoped>
+.a
+  text-decoration: none
+  position: relative
+  color: $grey
+  &:after
+    content: ""
+    position: absolute
+    top: 65%
+    left: -0.1em
+    right: -0.1em
+    bottom: 0
+    transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1)
+    background-color: $green-3
+    opacity: 0.4
+    margin-right: 0.1rem
+    margin-left: 0.1rem
+</style>
