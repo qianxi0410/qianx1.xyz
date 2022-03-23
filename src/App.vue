@@ -13,10 +13,14 @@ useMeta({
 </script>
 
 <template>
+  <Blossom />
   <q-layout>
     <q-page-container>
-      <Blossom />
-      <router-view />
+      <q-page>
+        <Banner />
+        <router-view />
+        <Footer />
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>

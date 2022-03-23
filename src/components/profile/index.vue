@@ -17,7 +17,7 @@ const { t } = useI18n();
   </div>
   <!-- desc -->
   <div class="row justify-center q-mt-md text-grey-7" style="font-size: 1.2em">
-    <div class="col-md-6 col-sm-9 col-xs-11">
+    <div class="col-md-6 col-sm-9 col-xs-10">
       <p style="font-weight: bold; font-size: large">{{ t("profile.welcome") }}</p>
       <p>{{ t("profile.intro") }}</p>
       <p v-html="t('profile.desc')"></p>
@@ -25,22 +25,11 @@ const { t } = useI18n();
         {{ t("profile.status") }}
       </p>
       <p v-html="t('profile.findme')"></p>
-      <p>{{ `${t("profile.mail")}\`echo bGl1eWloYW4wNDEwQGdtYWlsLmNvbQo= | base64 -d\`` }}</p>
+      <p style="word-wrap: break-word">
+        {{ `${t("profile.mail")}\`echo bGl1eWloYW4wNDEwQGdtYWlsLmNvbQo= | base64 -d\`` }}
+      </p>
     </div>
   </div>
-
-  <br />
-  <br />
-  <!-- copyright -->
-  <div class="row justify-center q-mt-auto">
-    <div class="col-md-6 col-sm-9 text-body2 col-xs-11 text-grey-6">
-      <span style="font-family: arial">&copy;</span>{{ t("profile.name") }} 2022 -
-      {{ new Date().getFullYear() }}
-      <a class="a" href="https://beian.miit.gov.cn">陕ICP备2021012752号</a>
-    </div>
-  </div>
-  <br />
-  <br />
 </template>
 
 <style lang="sass">

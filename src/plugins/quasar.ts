@@ -8,7 +8,7 @@ export const config = {
   },
   config: {
     loadingBar: {
-      color: "primary",
+      color: "green-3",
       size: "0.24rem",
       position: "top",
     },

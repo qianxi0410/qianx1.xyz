@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Banner: typeof import('./components/banner/index.vue')['default']
     Blossom: typeof import('./components/blossom/index.vue')['default']
+    Footer: typeof import('./components/footer/index.vue')['default']
     Index: typeof import('./views/Index.vue')['default']
     Profile: typeof import('./components/profile/index.vue')['default']
   }
