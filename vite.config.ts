@@ -15,7 +15,7 @@ export default defineConfig({
   },
   envDir: "src/env",
   envPrefix: "APP_",
-  mode: "development",
+  // mode: "development",
   plugins: [
     vue({
       template: { transformAssetUrls },
