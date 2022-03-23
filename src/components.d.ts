@@ -8,6 +8,7 @@ declare module 'vue' {
     Blossom: typeof import('./components/blossom/index.vue')['default']
     Footer: typeof import('./components/footer/index.vue')['default']
     Index: typeof import('./views/Index.vue')['default']
+    Posts: typeof import('./views/Posts.vue')['default']
     Profile: typeof import('./components/profile/index.vue')['default']
   }
 }

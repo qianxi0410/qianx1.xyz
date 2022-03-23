@@ -18,7 +18,11 @@ useMeta({
     <q-page-container>
       <q-page>
         <Banner />
-        <router-view />
+
+        <Transition name="scale" mode="out-in">
+          <router-view />
+        </Transition>
+
         <Footer />
       </q-page>
     </q-page-container>
@@ -34,5 +38,16 @@ useMeta({
 #app {
   font-family: "Fira Code", monospace;
   font-size: 1.2em;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.5s ease;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
 }
 </style>

@@ -3,31 +3,33 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <!-- avatar -->
-  <div class="row justify-center">
-    <div class="col col-auto self-center">
-      <q-avatar size="11vw" color="grey" class="shadow-8">
-        <img src="@/assets/avatar.jpg" />
-      </q-avatar>
+  <div>
+    <!-- avatar -->
+    <div class="row justify-center">
+      <div class="col col-auto self-center">
+        <q-avatar size="11vw" color="grey" class="shadow-8">
+          <img src="@/assets/avatar.jpg" />
+        </q-avatar>
+      </div>
     </div>
-  </div>
-  <!-- motto -->
-  <div class="row justify-center q-mt-md">
-    <p class="col-auto text-body1 text-center self-center">{{ t("profile.motto") }}</p>
-  </div>
-  <!-- desc -->
-  <div class="row justify-center q-mt-md text-grey-7" style="font-size: 1.2em">
-    <div class="col-md-6 col-sm-9 col-xs-10">
-      <p style="font-weight: bold; font-size: large">{{ t("profile.welcome") }}</p>
-      <p>{{ t("profile.intro") }}</p>
-      <p v-html="t('profile.desc')"></p>
-      <p>
-        {{ t("profile.status") }}
-      </p>
-      <p v-html="t('profile.findme')"></p>
-      <p style="word-wrap: break-word">
-        {{ `${t("profile.mail")}\`echo bGl1eWloYW4wNDEwQGdtYWlsLmNvbQo= | base64 -d\`` }}
-      </p>
+    <!-- motto -->
+    <div class="row justify-center q-mt-md">
+      <p class="col-auto text-body1 text-center self-center">{{ t("profile.motto") }}</p>
+    </div>
+    <!-- desc -->
+    <div class="row justify-center q-mt-md text-grey-7" style="font-size: 1.2em">
+      <div class="col-md-6 col-sm-9 col-xs-10">
+        <p style="font-weight: bold; font-size: large">{{ t("profile.welcome") }}</p>
+        <p>{{ t("profile.intro") }}</p>
+        <p v-html="t('profile.desc')"></p>
+        <p>
+          {{ t("profile.status") }}
+        </p>
+        <p v-html="t('profile.findme')"></p>
+        <p style="word-wrap: break-word">
+          {{ `${t("profile.mail")}\`echo bGl1eWloYW4wNDEwQGdtYWlsLmNvbQo= | base64 -d\`` }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
