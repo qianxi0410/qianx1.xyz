@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { Blog } from "../../types";
 
-const blog: Blog = {
-  title: "如何为你的terminal赋能",
-  create_date: Date.now(),
-  tags: ["terminal", "shell", "linux"],
-};
+const blogs = ref<Blog[]>();
+
+onMounted(() => {
+  const blog = null;
+});
 </script>
 
 <template>
-  <Post v-for="i in 8" :key="i" :props="blog" />
-  <Pagination />
+  <div>
+    <template v-if="blogs && blogs.length > 0"></template>
+    <template v-else>
+      <Nothing />
+    </template>
+    <Pagination :page="1" :size="8" :total="8" />
+  </div>
 </template>
