@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Blog } from "../../types";
+import { Post } from "../../types";
 
-const blogs = ref<Blog[]>();
+const posts = ref<Post[]>();
 
 onMounted(() => {
   const blog = null;
@@ -10,7 +10,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <template v-if="blogs && blogs.length > 0"></template>
+    <template v-if="posts && posts.length > 0"></template>
     <template v-else>
       <Nothing />
     </template>
