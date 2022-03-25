@@ -3,12 +3,17 @@ import { Post } from "../../types";
 const blog = defineProps<{ post: Post }>();
 
 const create_date_fmt = computed(() => {
-  const date = new Date(blog.post.create_date);
+  const date = new Date(Number(blog.post.create_time));
   const arr = date.toDateString().substring(4).split(" ");
 
   let res = `${arr[0]} ${arr[1]},${arr[2]}`;
   if (date.getFullYear() === new Date().getFullYear()) res = res.substring(0, res.length - 5);
   return res;
+});
+
+const tags = computed(() => {
+  if (!blog.post.tags) return [];
+  return blog.post.tags.split("/").map((tag) => tag.trim());
 });
 </script>
 
@@ -23,14 +28,15 @@ const create_date_fmt = computed(() => {
           {{ create_date_fmt }}
           <template v-if="post.tags && post.tags.length > 0">
             <q-chip
-              v-for="i in post.tags.length"
+              v-for="i in tags.length"
               :key="i"
               outline
+              :ripple="false"
               size="sm"
               class="text-body2 text-grey"
               style="background-color: rgba(0, 0, 0, 0)"
             >
-              {{ post.tags[i - 1] }}
+              {{ tags[i - 1] }}
             </q-chip>
           </template>
         </div>

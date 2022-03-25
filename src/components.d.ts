@@ -10,9 +10,9 @@ declare module 'vue' {
     Blossom: typeof import('./components/blossom/index.vue')['default']
     Footer: typeof import('./components/footer/index.vue')['default']
     Index: typeof import('./views/Index.vue')['default']
+    Item: typeof import('./components/posts/item.vue')['default']
     Nothing: typeof import('./components/posts/nothing.vue')['default']
     Pagination: typeof import('./components/posts/pagination.vue')['default']
-    Post: typeof import('./components/posts/post.vue')['default']
     Posts: typeof import('./components/posts/index.vue')['default']
     Profile: typeof import('./components/profile/index.vue')['default']
   }
