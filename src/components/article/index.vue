@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { evaArrowLeftOutline, evaArrowRightOutline } from "@quasar/extras/eva-icons";
 import { getPost } from "../../api/post";
 import { Post } from "../../types";
 
@@ -35,4 +36,25 @@ onMounted(async () => {
     </div>
   </div>
   <Markdown v-if="post.id" :text="post.content!" />
+  <div class="row justify-center">
+    <q-toolbar class="col-md-5 col-sm-8 col-xs-9 text-center text-grey">
+      <q-btn
+        v-show="post.prev"
+        :icon="evaArrowLeftOutline"
+        rounded
+        flat
+        :ripple="false"
+        :to="`${post.prev}`"
+      ></q-btn>
+      <q-space />
+      <q-btn
+        v-show="post.next"
+        :icon="evaArrowRightOutline"
+        rounded
+        flat
+        :ripple="false"
+        :to="`${post.next}`"
+      ></q-btn>
+    </q-toolbar>
+  </div>
 </template>

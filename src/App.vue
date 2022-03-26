@@ -20,7 +20,7 @@ useMeta({
         <Banner />
 
         <Transition name="scale" mode="out-in">
-          <router-view />
+          <router-view :key="$route.fullPath" />
         </Transition>
 
         <Footer />

@@ -5,7 +5,7 @@ export interface Post {
   create_time: number;
   update_time?: number;
   content?: string;
-  pre: string;
+  prev: string;
   next: string;
   display_id: string;
   author: string;
