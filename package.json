@@ -14,8 +14,11 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.13.3",
+    "@types/marked": "^4.0.3",
     "@vueuse/core": "^8.1.1",
     "axios": "^0.26.1",
+    "highlight.js": "^11.5.0",
+    "marked": "^4.0.12",
     "pinia": "^2.0.12",
     "quasar": "^2.6.1",
     "vue": "^3.2.25",
