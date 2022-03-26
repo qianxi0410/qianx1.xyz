@@ -18,7 +18,7 @@ const tags = computed(() => {
 
 const router = useRouter();
 const to = (id: string) => {
-  router.push({ path: `/post/${id}` });
+  router.push({ path: `/posts/${id}` });
 };
 </script>
 
