@@ -90,4 +90,11 @@ const html = md2HTML(props.text);
   &::after
     content: '`'
     color: $green-3
+
+.image
+  display: block
+  margin: 0 auto
+  max-width: 90%
+  max-height: 100%
+  border-radius: 1em
 </style>

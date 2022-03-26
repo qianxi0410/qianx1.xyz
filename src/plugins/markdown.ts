@@ -22,6 +22,9 @@ const renderer: Partial<marked.Renderer> = {
   codespan: (code: string) => {
     return `<code class="codespan">${code}</code>`;
   },
+  image: (href: string, title: string, text: string) => {
+    return `<img src="${href}" alt="${text}" class="image shadow-17" />`;
+  },
 };
 
 marked.use({ renderer });
