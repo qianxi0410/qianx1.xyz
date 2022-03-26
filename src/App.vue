@@ -38,6 +38,7 @@ useMeta({
 #app {
   font-family: "Fira Code", monospace;
   font-size: 1.2em;
+  scroll-behavior: smooth;
 }
 
 .scale-enter-active,
