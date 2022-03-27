@@ -29,7 +29,7 @@ watch(pageQuery, (newVal) => {
 <template>
   <div>
     <Transition name="scale" mode="out-in">
-      <template v-if="posts.length > 0">
+      <template v-if="total > 0">
         <TransitionGroup name="list" tag="div" mod="out-in">
           <Item v-for="post in posts" :key="post.id" :post="post" />
         </TransitionGroup>
