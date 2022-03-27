@@ -25,6 +25,10 @@ services:
     ports:
       - 8080:8080
     restart: always
+    environment:
+      - GIN_MODULE=release
+      - USERNAME=
+      - PASSOWRD=
   
   web:
     image: nginx:latest
