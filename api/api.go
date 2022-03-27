@@ -2,6 +2,7 @@ package main
 
 import (
 	"api/handlers"
+	"api/middlewares"
 	"flag"
 	"fmt"
 	"log"
@@ -43,6 +44,17 @@ func main() {
 		blog.GET("post/share/:display_id", postHandler.PostWithDisplayId())
 		blog.GET("/posts/:page/:size", postHandler.Posts())
 		blog.GET("/posts/count", postHandler.Count())
+
+		// need auth router
+		blog.PUT("/post/:id", middlewares.JwtAuthMiddleware(), postHandler.UpdatePost())
+		blog.DELETE("/post/:id", middlewares.JwtAuthMiddleware(), postHandler.DeletePost())
+		blog.POST("/post", middlewares.JwtAuthMiddleware(), postHandler.CreatePost())
+	}
+
+	user := e.Group("/user")
+	{
+		var userHandler handlers.UserHandler
+		user.POST("/login", userHandler.Login())
 	}
 
 	if port == "" {

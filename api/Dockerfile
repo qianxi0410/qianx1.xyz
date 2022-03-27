@@ -9,6 +9,5 @@ RUN  CGO_ENABLED=0 GOARCH=amd64 go build -o api
 FROM alpine:latest
 WORKDIR /workdir
 COPY --from=builder /workdir .
-ENV GIN_MODE=release
 EXPOSE 8080
 ENTRYPOINT [ "./api" ]

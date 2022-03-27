@@ -142,3 +142,105 @@ func (p *PostHandler) Count() gin.HandlerFunc {
 		ctx.JSON(http.StatusOK, r.Ok(count))
 	}
 }
+
+func (p *PostHandler) DeletePost() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		id := ctx.Param("id")
+		if id == "" {
+			ctx.JSON(http.StatusBadRequest, r.Error[string]("post id is required"))
+		}
+
+		err := dao.DeletePost(id)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
+		}
+
+		// invalid cache
+		cli := cache.New()
+		if cli == nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string]("redis client is nil"))
+		}
+		defer cli.Close()
+
+		var cur uint64 = 0
+		// list cache
+		keys, cur, err := cli.Scan(context.Background(), cur, cache.PostsCacheKey("*", "*"), 0).Result()
+		if cur != 0 {
+			cli.Del(context.Background(), keys...)
+		}
+		// count cache
+		cli.Del(context.Background(), cache.PostsCountCacheKey())
+		// post cache
+		cli.Del(context.Background(), cache.PostCacheKey(id))
+
+		ctx.JSON(http.StatusOK, r.Ok(""))
+	}
+}
+
+func (p *PostHandler) UpdatePost() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		var post dao.Post
+		err := ctx.ShouldBind(&post)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string]("post bind failed"))
+		}
+
+		err = dao.UpdatePost(post)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
+		}
+
+		// invalid cache
+		cli := cache.New()
+		if cli == nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string]("redis client is nil"))
+		}
+
+		var cur uint64 = 0
+		// post cache
+		cli.Del(context.Background(), cache.PostCacheKey(post.ID))
+		// list cache
+		keys, cur, err := cli.Scan(context.Background(), cur, cache.PostsCacheKey("*", "*"), 0).Result()
+		if cur != 0 {
+			cli.Del(context.Background(), keys...)
+		}
+
+		ctx.JSON(http.StatusOK, r.Ok(""))
+	}
+}
+
+func (p *PostHandler) CreatePost() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		var post dao.Post
+		err := ctx.ShouldBind(&post)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string]("post bind failed"))
+		}
+
+		// fill field
+		post.CreateTime = time.Now().Unix()
+
+		err = dao.CreatePost(post)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
+		}
+
+		// invalid cache
+		cli := cache.New()
+		if cli == nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string]("redis client is nil"))
+		}
+
+		var cur uint64 = 0
+		// list cache
+		keys, cur, err := cli.Scan(context.Background(), cur, cache.PostsCacheKey("*", "*"), 0).Result()
+		if cur != 0 {
+			cli.Del(context.Background(), keys...)
+		}
+
+		// count cache
+		cli.Del(context.Background(), cache.PostsCountCacheKey())
+
+		ctx.JSON(http.StatusOK, r.Ok(""))
+	}
+}
