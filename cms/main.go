@@ -5,6 +5,12 @@ import (
 	"log"
 )
 
+const (
+	repo  = "qianx1.xyz"
+	label = "post"
+	owner = "qianxi0410"
+)
+
 var op = flag.String("op", "", "which operation to run")
 
 func init() {
