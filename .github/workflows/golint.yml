@@ -4,13 +4,13 @@ on:
   push:
     branches: [ master ]
     paths:
-      - "api"
-      - "cms"
+      - "api/**"
+      - "cms/**"
   pull_request:
     branches: [ master ]
     paths:
-      - "api"
-      - "cms"
+      - "api/**"
+      - "cms/**"
 
 jobs:
 

@@ -4,14 +4,14 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - "api" 
-      - "cms" 
+      - "api/**" 
+      - "cms/**" 
       - ".github/**"
   pull_request:
     branches: [ master ]
     paths-ignore:
-      - "api" 
-      - "cms"
+      - "api/**" 
+      - "cms/**"
       - ".github/**"
 
 
