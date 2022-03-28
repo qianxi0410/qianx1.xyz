@@ -3,8 +3,14 @@ name: Go
 on:
   push:
     branches: [ master ]
+    paths:
+      - "api"
+      - "cms"
   pull_request:
     branches: [ master ]
+    paths:
+      - "api"
+      - "cms"
 
 jobs:
 
@@ -18,5 +24,8 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Fmt
+    - name: Fmt api
       run: cd api && go fmt ./...
+
+    - name: Fmt cms
+      run: cd cms && go fmt ./...
