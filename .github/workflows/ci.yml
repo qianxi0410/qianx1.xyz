@@ -6,11 +6,13 @@ on:
     paths-ignore:
       - "api" 
       - "cms" 
+      - ".github/**"
   pull_request:
     branches: [ master ]
     paths-ignore:
       - "api" 
       - "cms"
+      - ".github/**"
 
 
 jobs:
