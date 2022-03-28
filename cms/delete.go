@@ -44,7 +44,6 @@ func deletePost() {
 
 	_, err = req.
 		R().
-		SetHeader("Content-Type", "application/json").
 		SetHeader("Authorization", "Bearer "+token).
 		Delete(fmt.Sprintf("https://blogapi.qianx1.xyz/blog/post/%d", issue.GetID()))
 
