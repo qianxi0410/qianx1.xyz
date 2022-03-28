@@ -21,9 +21,9 @@ func deletePost() {
 
 	issues, _, err := cli.Issues.
 		ListByRepo(context.Background(), owner, repo, &github.IssueListByRepoOptions{
-			State:  "open",
+			State:  "closed",
 			Labels: []string{label},
-			Sort:   "closed",
+			Sort:   "updated",
 			ListOptions: github.ListOptions{
 				Page:    1,
 				PerPage: 1,
