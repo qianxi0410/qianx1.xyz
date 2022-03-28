@@ -3,8 +3,14 @@ name: ci
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - "api" 
+      - "cms" 
   pull_request:
     branches: [ master ]
+    paths-ignore:
+      - "api" 
+      - "cms"
 
 
 jobs:
