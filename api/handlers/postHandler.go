@@ -217,9 +217,6 @@ func (p *PostHandler) CreatePost() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string]("post bind failed"))
 		}
 
-		// fill field
-		post.CreateTime = time.Now().Unix()
-
 		err = dao.CreatePost(post)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
