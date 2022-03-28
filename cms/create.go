@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"regexp"
 	"strings"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-github/v43/github"
@@ -59,11 +61,20 @@ func createPost() {
 		labelNames = append(labelNames, labels[i].Name)
 	}
 
+	reg := regexp.MustCompile("\\[([a-zA-Z0-9-_!]+)\\] ([\u4e00-\u9fa5_a-zA-Z0-9!\\s]+)")
+	params := reg.FindStringSubmatch(issue.GetTitle())
+
+	if len(params) != 3 {
+		log.Fatalf("invalid issue title: %s", issue.GetTitle())
+	}
+
 	post := Post{
-		ID:      fmt.Sprintf("%d", issue.GetID()),
-		Title:   issue.GetTitle(),
-		Content: issue.GetBody(),
-		Tags:    strings.Join(labelNames, "/"),
+		ID:         fmt.Sprintf("%d", issue.GetID()),
+		Title:      params[2],
+		Content:    issue.GetBody(),
+		Tags:       strings.Join(labelNames, "/"),
+		CreateTime: issue.GetCreatedAt().Add(8 * time.Hour).Unix(),
+		DisplayId:  params[1],
 	}
 
 	_, err = req.
