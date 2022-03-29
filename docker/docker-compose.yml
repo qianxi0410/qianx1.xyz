@@ -27,7 +27,7 @@ services:
     restart: always
     environment:
       - GIN_MODULE=release
-      - USERNAME=
+      - USER_NAME=
       - PASSOWRD=
   
   web:
