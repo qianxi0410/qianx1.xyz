@@ -1,8 +1,8 @@
-# qiaxi.me
+## qiax1.xyz
 
 yet another qianxi's personal blog
 
-## features
+### features
 
 - ci / cd
 - auto deploy post
