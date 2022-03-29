@@ -126,9 +126,9 @@ func CreatePost(p Post) error {
 				p.Next = next.ID
 				next.Prev = p.ID
 				tx.Save(next)
-				tx.Create(p)
 			}
 		}
+		tx.Create(p)
 
 		return nil
 	})
