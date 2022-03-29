@@ -73,7 +73,7 @@ func DeletePost(id string) error {
 	return db.Transaction(func(tx *gorm.DB) error {
 		var cur Post
 		tx.First(&cur, id)
-		tx.Delete(&Post{}, id)
+		tx.Unscoped().Delete(&Post{}, id)
 
 		var next, prev Post
 
@@ -85,14 +85,18 @@ func DeletePost(id string) error {
 		}
 
 		if next.ID != "" {
-			prev.Next = next.ID
+			next.Prev = cur.Prev
 		}
 		if prev.ID != "" {
-			next.Prev = prev.ID
+			prev.Next = cur.Next
 		}
 
-		tx.Save(prev)
-		tx.Save(next)
+		if prev.ID != "" {
+			tx.Save(prev)
+		}
+		if next.ID != "" {
+			tx.Save(next)
+		}
 
 		return nil
 	})
