@@ -18,7 +18,7 @@ func login() (string, error) {
 		R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(User{
-			Username: os.Getenv("USERNAME"),
+			Name:     os.Getenv("USER_NAME"),
 			Password: os.Getenv("PASSWORD"),
 		}).
 		Post("https://blogapi.qianx1.xyz/user/login")
