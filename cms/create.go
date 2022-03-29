@@ -16,7 +16,7 @@ import (
 func createPost() {
 	token, err := login()
 
-	if err != nil {
+	if err != nil || len(token) == 0 {
 		log.Fatalf("login failed: %v", err)
 	}
 
