@@ -67,7 +67,7 @@ onMounted(async () => {
     <div class="row justify-center">
       <div class="col-md-6 col-xs-10 col-sm-9 text-body1 text-grey q-mt-md">
         {{ create_date_fmt }} &nbsp;·&nbsp;
-        <span>{{ post.author }}</span>
+        <span>{{ post.author ?? "qianxi0410" }}</span>
       </div>
     </div>
     <Markdown :text="post.content!" />
