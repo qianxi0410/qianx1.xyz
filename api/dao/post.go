@@ -72,7 +72,7 @@ func DeletePost(id string) error {
 
 	return db.Transaction(func(tx *gorm.DB) error {
 		var cur Post
-		tx.First(cur, id)
+		tx.First(&cur, id)
 		tx.Delete(&Post{}, id)
 
 		var next, prev Post
@@ -105,7 +105,7 @@ func UpdatePost(p Post) error {
 		return err
 	}
 
-	db.Save(&p)
+	db.Model(&Post{ID: p.ID}).Updates(p)
 	return nil
 }
 
@@ -116,18 +116,18 @@ func CreatePost(p Post) error {
 	}
 
 	return db.Transaction(func(tx *gorm.DB) error {
-		tx.Create(&p)
-
 		var count int64
 		tx.Model(&Post{}).Count(&count)
 
 		if count != 0 {
 			var next Post
-			db.Order("create_time desc").First(&next)
-			p.Next = next.ID
-
-			next.Prev = p.ID
-			db.Save(next)
+			tx.Order("create_time desc").First(&next)
+			if next.ID != "" {
+				p.Next = next.ID
+				next.Prev = p.ID
+				tx.Save(next)
+				tx.Create(p)
+			}
 		}
 
 		return nil

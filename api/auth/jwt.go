@@ -14,7 +14,7 @@ type MyClaims struct {
 
 const (
 	TokenExpireDuration = time.Minute * 5
-	MySecretKey         = "cakebytheocean"
+	MySecretKey         = ""
 )
 
 var ErrInvalidToken = errors.New("invalid jwt token")
@@ -30,12 +30,12 @@ func GenToken(username string) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
 
-	return token.SignedString(MySecretKey)
+	return token.SignedString([]byte(MySecretKey))
 }
 
 func ParseToken(tokenStr string) (*MyClaims, error) {
 	token, err := jwt.ParseWithClaims(tokenStr, &MyClaims{}, func(t *jwt.Token) (interface{}, error) {
-		return MySecretKey, nil
+		return []byte(MySecretKey), nil
 	})
 
 	if err != nil {

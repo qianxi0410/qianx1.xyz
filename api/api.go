@@ -46,7 +46,7 @@ func main() {
 		blog.GET("/posts/count", postHandler.Count())
 
 		// need auth router
-		blog.PUT("/post/:id", middlewares.JwtAuthMiddleware(), postHandler.UpdatePost())
+		blog.PUT("/post", middlewares.JwtAuthMiddleware(), postHandler.UpdatePost())
 		blog.DELETE("/post/:id", middlewares.JwtAuthMiddleware(), postHandler.DeletePost())
 		blog.POST("/post", middlewares.JwtAuthMiddleware(), postHandler.CreatePost())
 	}

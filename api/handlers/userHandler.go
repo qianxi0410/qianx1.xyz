@@ -20,7 +20,7 @@ func (u *UserHandler) Login() gin.HandlerFunc {
 			ctx.JSON(http.StatusBadRequest, r.Error[string]("invalid request"))
 		}
 
-		if user.Name != os.Getenv("USERNAME") || user.Password != "PASSWORD" {
+		if user.Name != os.Getenv("USER_NAME") || user.Password != os.Getenv("PASSWORD") {
 			ctx.JSON(http.StatusUnauthorized, r.Error[string]("invalid user"))
 		}
 
