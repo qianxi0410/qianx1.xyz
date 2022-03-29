@@ -8,7 +8,7 @@ import (
 )
 
 type MyClaims struct {
-	Username string `json:username`
+	Username string `json:"username"`
 	jwt.StandardClaims
 }
 
@@ -17,7 +17,7 @@ const (
 	MySecretKey         = "cakebytheocean"
 )
 
-var invalidTokenErr = errors.New("invalid jwt token")
+var ErrInvalidToken = errors.New("invalid jwt token")
 
 func GenToken(username string) (string, error) {
 	c := MyClaims{
@@ -46,5 +46,5 @@ func ParseToken(tokenStr string) (*MyClaims, error) {
 		return claims, nil
 	}
 
-	return nil, invalidTokenErr
+	return nil, ErrInvalidToken
 }
