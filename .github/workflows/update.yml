@@ -23,7 +23,7 @@ jobs:
       run: cd cms && go mod download
 
     - name: Update a post
-      run: cd cmd && go run . -op=update
+      run: cd cms && go run . -op=update
       env: 
         USER_NAME: ${{secrets.USER_NAME}}
         PASSWORD: ${{secrets.PASSWORD}}
