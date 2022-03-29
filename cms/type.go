@@ -24,11 +24,11 @@ type Post struct {
 }
 
 type Label struct {
-	ID          string `json:"id"`
+	ID          int64  `json:"id"`
 	NodeId      string `json:"node_id"`
 	Url         string `json:"url"`
 	Name        string `json:"name"`
 	Color       string `json:"color"`
-	Default     string `json:"default"`
+	Default     bool   `json:"default"`
 	Description string `json:"description"`
 }
