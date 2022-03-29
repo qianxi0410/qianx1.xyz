@@ -1,4 +1,4 @@
-## qiax1.xyz
+## qianx1.xyz
 
 yet another qianxi's personal blog
 
