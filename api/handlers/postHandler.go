@@ -162,18 +162,15 @@ func (p *PostHandler) DeletePost() gin.HandlerFunc {
 		}
 		defer cli.Close()
 
-		var cur uint64 = 0
 		// list cache
-		keys, cur, err := cli.Scan(context.Background(), cur, cache.PostsCacheKey("*", "*"), 0).Result()
-		if cur != 0 {
-			cli.Del(context.Background(), keys...)
-		}
-		// count cache
-		cli.Del(context.Background(), cache.PostsCountCacheKey())
-		// post cache
-		cli.Del(context.Background(), cache.PostCacheKey(id))
+		keys, _, err := cli.Scan(context.Background(), 0, "posts:*", 0).Result()
+		cli.Del(context.Background(), keys...)
 
-		ctx.JSON(http.StatusOK, r.Ok(""))
+		// count cache
+		// post cache
+		cli.Del(context.Background(), cache.PostsCountCacheKey(), cache.PostCacheKey(id))
+
+		ctx.JSON(http.StatusOK, r.Ok("dekete success"))
 	}
 }
 
@@ -196,16 +193,13 @@ func (p *PostHandler) UpdatePost() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string]("redis client is nil"))
 		}
 
-		var cur uint64 = 0
 		// post cache
 		cli.Del(context.Background(), cache.PostCacheKey(post.ID))
 		// list cache
-		keys, cur, err := cli.Scan(context.Background(), cur, cache.PostsCacheKey("*", "*"), 0).Result()
-		if cur != 0 {
-			cli.Del(context.Background(), keys...)
-		}
+		keys, _, err := cli.Scan(context.Background(), 0, cache.PostsCacheKey("*", "*"), 0).Result()
+		cli.Del(context.Background(), keys...)
 
-		ctx.JSON(http.StatusOK, r.Ok(""))
+		ctx.JSON(http.StatusOK, r.Ok("update success"))
 	}
 }
 
@@ -228,16 +222,13 @@ func (p *PostHandler) CreatePost() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string]("redis client is nil"))
 		}
 
-		var cur uint64 = 0
 		// list cache
-		keys, cur, err := cli.Scan(context.Background(), cur, cache.PostsCacheKey("*", "*"), 0).Result()
-		if cur != 0 {
-			cli.Del(context.Background(), keys...)
-		}
+		keys, _, err := cli.Scan(context.Background(), 0, cache.PostsCacheKey("*", "*"), 0).Result()
+		cli.Del(context.Background(), keys...)
 
 		// count cache
 		cli.Del(context.Background(), cache.PostsCountCacheKey())
 
-		ctx.JSON(http.StatusOK, r.Ok(""))
+		ctx.JSON(http.StatusOK, r.Ok("create success"))
 	}
 }
