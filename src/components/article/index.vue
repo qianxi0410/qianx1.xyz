@@ -10,7 +10,7 @@ import { Post } from "../../types";
 const post = reactive<Post>({} as any);
 
 const create_date_fmt = computed(() => {
-  const date = new Date(Number(post.create_time));
+  const date = new Date(Number(post.create_time) * 1000);
   const arr = date.toDateString().substring(4).split(" ");
 
   let res = `${arr[0]} ${arr[1]},${arr[2]}`;
