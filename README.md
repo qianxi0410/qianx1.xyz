@@ -11,3 +11,4 @@ yet another qianxi's personal blog
 - Automatically push articles to server's database
 - containerized
 - Docker compose for container management
+- whole site https (Filing is disgusting)
