@@ -19,10 +19,10 @@ jobs:
           go-version: 1.18
 
       - name: Download dep
-        run: go mod download
+        run: cd cms && go mod download
 
       - name: Create a new post
-        run: go run . -op=create
+        run: cd cms && go run . -op=create
         env:
           USER_NAME: ${{secrets.USER_NAME}}
           PASSWORD: ${{secrets.PASSWORD}}
