@@ -170,7 +170,7 @@ func (p *PostHandler) DeletePost() gin.HandlerFunc {
 		// post cache
 		cli.Del(context.Background(), cache.PostsCountCacheKey(), cache.PostCacheKey(id))
 
-		ctx.JSON(http.StatusOK, r.Ok("dekete success"))
+		ctx.JSON(http.StatusOK, r.Ok("delete success"))
 	}
 }
 
