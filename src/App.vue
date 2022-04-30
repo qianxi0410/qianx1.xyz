@@ -18,11 +18,7 @@ useMeta({
     <q-page-container>
       <q-page>
         <Banner />
-
-        <Transition name="scale" mode="out-in">
-          <router-view :key="$route.fullPath" />
-        </Transition>
-
+        <router-view />
         <Footer />
       </q-page>
     </q-page-container>
@@ -39,16 +35,5 @@ useMeta({
   font-family: "Fira Code", monospace;
   font-size: 1.2em;
   scroll-behavior: smooth;
-}
-
-.scale-enter-active,
-.scale-leave-active {
-  transition: all 0.5s ease;
-}
-
-.scale-enter-from,
-.scale-leave-to {
-  opacity: 0;
-  transform: scale(0.9);
 }
 </style>
