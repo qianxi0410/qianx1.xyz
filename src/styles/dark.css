@@ -10,6 +10,8 @@ pre code.hljs {
   background: #44474d;
   padding-left: 1em;
   padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 1em;
 }
 .hljs-comment,
 .hljs-quote {

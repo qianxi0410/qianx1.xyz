@@ -11,6 +11,8 @@ pre code.hljs {
   color: gray;
   padding-left: 1em;
   padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 1em;
 }
 .xml .hljs-meta {
   color: white;
