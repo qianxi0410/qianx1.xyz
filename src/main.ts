@@ -1,5 +1,5 @@
 import "@quasar/extras/material-icons/material-icons.css";
-import { Quasar } from "quasar";
+import { Dark, Quasar } from "quasar";
 import "quasar/src/css/index.sass";
 import { createApp } from "vue";
 import App from "./App.vue";
@@ -14,5 +14,7 @@ app.use(pinia);
 app.use(i18n);
 app.use(router);
 app.use(Quasar, config);
+
+Dark.set(true);
 
 app.mount("#app");
