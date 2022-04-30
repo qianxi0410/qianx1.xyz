@@ -19,6 +19,9 @@ const renderer: Partial<marked.Renderer> = {
   del: (text: string) => {
     return `<del title="你知道的太多啦" class="del">${text}</del>`;
   },
+  blockquote: (text: string) => {
+    return `<blockquote class="blockquote">${text}</blockquote>`;
+  },
   codespan: (code: string) => {
     return `<code class="codespan">${code}</code>`;
   },

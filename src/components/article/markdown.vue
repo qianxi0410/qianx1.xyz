@@ -97,4 +97,18 @@ const html = md2HTML(props.text);
   max-width: 90%
   max-height: 100%
   border-radius: 1em
+
+.blockquote
+  border-left: 0.2em solid $green-3
+  padding-left: 1em
+  margin-left: 0.5em
+  margin-right: 0.5em
+  margin-top: 0.5em
+  margin-bottom: 0.5em
+  &::before
+    content: '"'
+    color: $green-3
+  &::after
+    content: '"'
+    color: $green-3
 </style>
