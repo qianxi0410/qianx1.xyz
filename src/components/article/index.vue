@@ -21,13 +21,28 @@ const create_date_fmt = computed(() => {
 const route = useRoute();
 const router = useRouter();
 
-const to = (id: string) => {
-  router.push({ path: `/posts/${id}` });
-};
+watch(
+  () => route.params.id,
+  async (id) => {
+    const { data } = await getPost(id as string);
+    Object.assign(post, data.data);
+    window.history.pushState(null, "", `/posts/${post.display_id}`);
+
+    if (!post.display_id) {
+      router.push({ path: `/404` });
+    }
+  }
+);
 
 const scroll = () => {
   const el = document.getElementById("app");
   if (el) el.scrollIntoView({ behavior: "smooth" });
+};
+
+const to = (id: string) => {
+  router.push({ path: `/posts/${id}` });
+  // scroll to top
+  scroll();
 };
 
 const { y } = useWindowScroll();
@@ -49,7 +64,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="post.id">
+  <div v-if="post.id" :key="post.id">
     <Transition mode="out-in" name="fade">
       <q-btn
         v-if]="y > height * 1.1"

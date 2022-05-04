@@ -13,8 +13,6 @@ declare module 'vue' {
     Index: typeof import('./views/Index.vue')['default']
     Item: typeof import('./components/posts/item.vue')['default']
     Markdown: typeof import('./components/article/markdown.vue')['default']
-    Nothing: typeof import('./components/posts/nothing.vue')['default']
-    Pagination: typeof import('./components/posts/pagination.vue')['default']
     Post: typeof import('./views/Post.vue')['default']
     Posts: typeof import('./components/posts/index.vue')['default']
     Profile: typeof import('./components/profile/index.vue')['default']
