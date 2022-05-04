@@ -21,18 +21,22 @@ const create_date_fmt = computed(() => {
 const route = useRoute();
 const router = useRouter();
 
-watch(
+const cancel = watch(
   () => route.params.id,
   async (id) => {
+    if (!route.path.startsWith("/posts")) return;
+
     const { data } = await getPost(id as string);
     Object.assign(post, data.data);
     window.history.pushState(null, "", `/posts/${post.display_id}`);
 
-    if (!post.display_id) {
-      router.push({ path: `/404` });
-    }
+    if (!post.display_id) router.push({ path: `/404` });
   }
 );
+
+onUnmounted(() => {
+  cancel();
+});
 
 const scroll = () => {
   const el = document.getElementById("app");
