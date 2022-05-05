@@ -6,7 +6,7 @@ import (
 	"log"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-github/v43/github"
+	"github.com/google/go-github/v44/github"
 )
 
 func deletePost() {
