@@ -4,7 +4,7 @@ import {
   evaArrowLeftOutline,
   evaArrowRightOutline,
 } from "@quasar/extras/eva-icons";
-import { getPost, getPostByDisplayId } from "../../api/post";
+import { usePost } from "../../composoable/usePost";
 import { Post } from "../../types";
 
 const post = reactive<Post>({} as any);
@@ -26,19 +26,11 @@ const cancel = watch(
   async (id) => {
     if (!route.path.startsWith("/posts")) return;
 
-    // query by display id
-    if ((id as string).match(/^[a-zA-Z\-]+$/)) {
-      const { data } = await getPostByDisplayId(id as string);
-      Object.assign(post, data.data);
-      return;
-    }
+    const p = await usePost(id as string);
 
-    const { data } = await getPost(id as string);
-    Object.assign(post, data.data);
-    if (!post.display_id) {
-      router.push({ path: `/404` });
-      return;
-    }
+    if (!p.id) router.push(`/404`);
+
+    Object.assign(post, p);
     window.history.pushState(null, "", `/posts/${post.display_id}`);
   }
 );
@@ -66,19 +58,9 @@ onMounted(async () => {
 
   const id = route.params.id as string;
 
-  // query by display id
-  if (id.match(/^[a-zA-Z\-]+$/)) {
-    const { data } = await getPostByDisplayId(id);
-    Object.assign(post, data.data);
-    return;
-  }
-
-  const { data } = await getPost(id);
-  Object.assign(post, data.data);
-  if (!post.display_id) {
-    router.push({ path: `/404` });
-    return;
-  }
+  const p = await usePost(id);
+  if (!p.id) router.push(`/404`);
+  Object.assign(post, p);
   window.history.pushState(null, "", `/posts/${post.display_id}`);
 });
 </script>
