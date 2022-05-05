@@ -4,7 +4,7 @@ import {
   evaArrowLeftOutline,
   evaArrowRightOutline,
 } from "@quasar/extras/eva-icons";
-import { getPost } from "../../api/post";
+import { getPost, getPostByDisplayId } from "../../api/post";
 import { Post } from "../../types";
 
 const post = reactive<Post>({} as any);
@@ -26,11 +26,20 @@ const cancel = watch(
   async (id) => {
     if (!route.path.startsWith("/posts")) return;
 
+    // query by display id
+    if ((id as string).match(/^[a-zA-Z\-]+$/)) {
+      const { data } = await getPostByDisplayId(id as string);
+      Object.assign(post, data.data);
+      return;
+    }
+
     const { data } = await getPost(id as string);
     Object.assign(post, data.data);
+    if (!post.display_id) {
+      router.push({ path: `/404` });
+      return;
+    }
     window.history.pushState(null, "", `/posts/${post.display_id}`);
-
-    if (!post.display_id) router.push({ path: `/404` });
   }
 );
 
@@ -53,17 +62,24 @@ const { y } = useWindowScroll();
 const { height } = useWindowSize();
 
 onMounted(async () => {
-  const id = route.params.id;
+  if (!route.path.startsWith("/posts")) return;
 
-  if (id) {
-    const { data } = await getPost(id as string);
+  const id = route.params.id as string;
+
+  // query by display id
+  if (id.match(/^[a-zA-Z\-]+$/)) {
+    const { data } = await getPostByDisplayId(id);
     Object.assign(post, data.data);
-    window.history.pushState(null, "", `/posts/${post.display_id}`);
-
-    if (!post.display_id) {
-      router.push({ path: `/404` });
-    }
+    return;
   }
+
+  const { data } = await getPost(id);
+  Object.assign(post, data.data);
+  if (!post.display_id) {
+    router.push({ path: `/404` });
+    return;
+  }
+  window.history.pushState(null, "", `/posts/${post.display_id}`);
 });
 </script>
 
