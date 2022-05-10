@@ -1,25 +1,25 @@
 <script lang="ts" setup>
-import { Post } from "../../types";
-const blog = defineProps<{ post: Post }>();
+import { Post } from '../../types'
+const blog = defineProps<{ post: Post }>()
 
 const create_date_fmt = computed(() => {
-  const date = new Date(Number(blog.post.create_time) * 1000);
-  const arr = date.toDateString().substring(4).split(" ");
+  const date = new Date(Number(blog.post.create_time) * 1000)
+  const array = date.toDateString().slice(4).split(' ')
 
-  let res = `${arr[0]} ${arr[1]},${arr[2]}`;
-  if (date.getFullYear() === new Date().getFullYear()) res = res.substring(0, res.length - 5);
-  return res;
-});
+  let res = `${array[0]} ${array[1]},${array[2]}`
+  if (date.getFullYear() === new Date().getFullYear()) res = res.slice(0, Math.max(0, res.length - 5))
+  return res
+})
 
 const tags = computed(() => {
-  if (!blog.post.tags) return [];
-  return blog.post.tags.split("/").map((tag) => tag.trim());
-});
+  if (!blog.post.tags) return []
+  return blog.post.tags.split('/').map(tag => tag.trim())
+})
 
-const router = useRouter();
+const router = useRouter()
 const to = (id: string) => {
-  router.push({ path: `/posts/${id}` });
-};
+  router.push({ path: `/posts/${id}` })
+}
 </script>
 
 <template>

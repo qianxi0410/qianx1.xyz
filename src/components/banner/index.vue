@@ -5,17 +5,13 @@ import {
   evaMoonOutline,
   evaPaperPlaneOutline,
   evaSunOutline,
-} from "@quasar/extras/eva-icons";
+} from '@quasar/extras/eva-icons'
 
-const { locale } = useI18n();
+const { locale } = useI18n()
 
 const toggleLang = () => {
-  if (locale.value === "en") {
-    locale.value = "zh-CN";
-  } else {
-    locale.value = "en";
-  }
-};
+  locale.value = locale.value === 'en' ? 'zh-CN' : 'en'
+}
 </script>
 
 <template>
@@ -31,7 +27,14 @@ const toggleLang = () => {
     />
     <template #action>
       <q-btn flat color="grey" :ripple="false" label="blog" to="/blog" />
-      <q-btn flat fab :icon="evaGlobe2Outline" color="grey" :ripple="false" @click="toggleLang" />
+      <q-btn
+        flat
+        fab
+        :icon="evaGlobe2Outline"
+        color="grey"
+        :ripple="false"
+        @click="toggleLang"
+      />
       <q-btn
         :icon="evaGithubOutline"
         color="grey"

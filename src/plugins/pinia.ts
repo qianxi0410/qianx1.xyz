@@ -1,1 +1,1 @@
-export const pinia = createPinia();
+export const pinia = createPinia()

@@ -1,20 +1,20 @@
-import "@quasar/extras/material-icons/material-icons.css";
-import { Dark, Quasar } from "quasar";
-import "quasar/src/css/index.sass";
-import { createApp } from "vue";
-import App from "./App.vue";
-import { i18n } from "./plugins/i18n";
-import { pinia } from "./plugins/pinia";
-import { config } from "./plugins/quasar";
-import { router } from "./router";
+import '@quasar/extras/material-icons/material-icons.css'
+import { Dark, Quasar } from 'quasar'
+import 'quasar/src/css/index.sass'
+import { createApp } from 'vue'
+import App from './App.vue'
+import { i18n } from './plugins/i18n'
+import { pinia } from './plugins/pinia'
+import { config } from './plugins/quasar'
+import { router } from './router'
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(pinia);
-app.use(i18n);
-app.use(router);
-app.use(Quasar, config);
+app.use(pinia)
+app.use(i18n)
+app.use(router)
+app.use(Quasar, config)
 
-Dark.set(true);
+Dark.set(true)
 
-app.mount("#app");
+app.mount('#app')

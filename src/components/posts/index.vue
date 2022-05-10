@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { getPosts } from "../../api/post";
-import { Post } from "../../types";
+import { getPosts } from '../../api/post'
+import { Post } from '../../types'
 
-const posts = ref<Post[]>([]);
-const pageQuery = reactive({ page: 1, size: 100 });
+const posts = ref<Post[]>([])
+const pageQuery = reactive({ page: 1, size: 100 })
 
 onMounted(async () => {
-  const { data: postRes } = await getPosts(pageQuery.page, pageQuery.size);
-  posts.value = postRes.data;
-});
+  const { data: postRes } = await getPosts(pageQuery.page, pageQuery.size)
+  posts.value = postRes.data
+})
 </script>
 
 <template>

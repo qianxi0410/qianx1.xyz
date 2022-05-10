@@ -1,3 +1,10 @@
 {
-  "extends": ["@qianxi0410", "plugin:prettier/recommended"]
+  "extends": [
+    "@qianxi0410/eslint-config-vue"
+  ],
+  "rules": {
+    "unicorn/filename-case": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "space-before-function-paren": "off"
+  }
 }

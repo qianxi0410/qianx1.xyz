@@ -3,73 +3,74 @@ import {
   evaArrowheadUpOutline,
   evaArrowLeftOutline,
   evaArrowRightOutline,
-} from "@quasar/extras/eva-icons";
-import { usePost } from "../../composoable/usePost";
-import { Post } from "../../types";
+} from '@quasar/extras/eva-icons'
+import { usePost } from '../../composoable/usePost'
+import { Post } from '../../types'
 
-const post = reactive<Post>({} as any);
+const post = reactive<Post>({} as any)
 
 const create_date_fmt = computed(() => {
-  const date = new Date(Number(post.create_time) * 1000);
-  const arr = date.toDateString().substring(4).split(" ");
+  const date = new Date(Number(post.create_time) * 1000)
+  const array = date.toDateString().slice(4).split(' ')
 
-  let res = `${arr[0]} ${arr[1]},${arr[2]}`;
-  if (date.getFullYear() === new Date().getFullYear()) res = res.substring(0, res.length - 5);
-  return res;
-});
+  let res = `${array[0]} ${array[1]},${array[2]}`
+  if (date.getFullYear() === new Date().getFullYear()) res = res.slice(0, Math.max(0, res.length - 5))
+  return res
+})
 
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
 const cancel = watch(
   () => route.params.id,
+  // eslint-disable-next-line space-before-function-paren
   async (id) => {
-    if (!route.path.startsWith("/posts")) return;
+    if (!route.path.startsWith('/posts')) return
 
-    const p = await usePost(id as string);
+    const p = await usePost(id as string)
 
-    if (!p.id) router.push(`/404`);
+    if (!p.id) router.push('/404')
 
-    Object.assign(post, p);
-    window.history.pushState(null, "", `/posts/${post.display_id}`);
-  }
-);
+    Object.assign(post, p)
+    window.history.pushState(undefined, '', `/posts/${post.display_id}`)
+  },
+)
 
 onUnmounted(() => {
-  cancel();
-});
+  cancel()
+})
 
 const scroll = () => {
-  const el = document.getElementById("app");
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-};
+  const element = document.querySelector('#app')
+  if (element) element.scrollIntoView({ behavior: 'smooth' })
+}
 
 const to = (id: string) => {
-  router.push({ path: `/posts/${id}` });
+  router.push({ path: `/posts/${id}` })
   // scroll to top
-  scroll();
-};
+  scroll()
+}
 
-const { y } = useWindowScroll();
-const { height } = useWindowSize();
+const { y } = useWindowScroll()
+const { height } = useWindowSize()
 
 onMounted(async () => {
-  if (!route.path.startsWith("/posts")) return;
+  if (!route.path.startsWith('/posts')) return
 
-  const id = route.params.id as string;
+  const id = route.params.id as string
 
-  const p = await usePost(id);
-  if (!p.id) router.push(`/404`);
-  Object.assign(post, p);
-  window.history.pushState(null, "", `/posts/${post.display_id}`);
-});
+  const p = await usePost(id)
+  if (!p.id) router.push('/404')
+  Object.assign(post, p)
+  window.history.pushState(undefined, '', `/posts/${post.display_id}`)
+})
 </script>
 
 <template>
   <div v-if="post.id" :key="post.id">
     <Transition mode="out-in" name="fade">
       <q-btn
-        v-if]="y > height * 1.1"
+        v-if="y > height * 1.1"
         round
         flat
         :ripple="false"
@@ -79,7 +80,9 @@ onMounted(async () => {
       />
     </Transition>
     <div class="row justify-center">
-      <div class="col-md-6 col-xs-10 col-sm-9 text-h3">{{ post.title }}</div>
+      <div class="col-md-6 col-xs-10 col-sm-9 text-h3">
+        {{ post.title }}
+      </div>
     </div>
     <div class="row justify-center">
       <div class="col-md-6 col-xs-10 col-sm-9 text-body1 text-grey q-mt-md">
@@ -97,7 +100,8 @@ onMounted(async () => {
           flat
           :ripple="false"
           @click="to(post.prev)"
-        ></q-btn>
+        >
+        </q-btn>
         <q-space />
         <q-btn
           v-show="post.next"
@@ -106,20 +110,9 @@ onMounted(async () => {
           flat
           :ripple="false"
           @click="to(post.next)"
-        ></q-btn>
+        >
+        </q-btn>
       </q-toolbar>
     </div>
   </div>
 </template>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

@@ -2,14 +2,14 @@
 useMeta({
   title: `${import.meta.env.APP_TITLE}`,
   meta: {
-    description: { name: "description", content: "qianxi's blog" },
-    keywords: { name: "keywords", content: "blog qianxi" },
-    equiv: { "http-equiv": "Content-Type", content: "text/html; charset=UTF-8" },
+    description: { name: 'description', content: 'qianxi\'s blog' },
+    keywords: { name: 'keywords', content: 'blog qianxi' },
+    equiv: { 'http-equiv': 'Content-Type', 'content': 'text/html; charset=UTF-8' },
     noscript: {
-      default: "This is content for browsers with no JS (or disabled JS)",
+      default: 'This is content for browsers with no JS (or disabled JS)',
     },
   },
-});
+})
 </script>
 
 <template>

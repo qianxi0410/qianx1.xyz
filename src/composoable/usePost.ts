@@ -1,18 +1,18 @@
-import { getPost, getPostByDisplayId } from "../api/post";
+import { getPost, getPostByDisplayId } from '../api/post'
 
 export const usePost = async (id: string) => {
   // query by display id
-  if (id.match(/^[a-zA-Z\-]+$/)) {
+  if (/^[A-Za-z\-]+$/.test(id)) {
     const {
       data: { data: post },
-    } = await getPostByDisplayId(id);
+    } = await getPostByDisplayId(id)
 
-    return post;
+    return post
   }
 
   const {
     data: { data: post },
-  } = await getPost(id);
+  } = await getPost(id)
 
-  return post;
-};
+  return post
+}

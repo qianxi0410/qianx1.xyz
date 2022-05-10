@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n();
+const { t } = useI18n()
 </script>
 
 <template>
@@ -14,12 +14,16 @@ const { t } = useI18n();
     </div>
     <!-- motto -->
     <div class="row justify-center q-mt-md">
-      <p class="col-auto text-body1 text-center self-center">{{ t("profile.motto") }}</p>
+      <p class="col-auto text-body1 text-center self-center">
+        {{ t("profile.motto") }}
+      </p>
     </div>
     <!-- desc -->
     <div class="row justify-center q-mt-md text-grey-7" style="font-size: 1.2em">
       <div class="col-md-6 col-sm-9 col-xs-10">
-        <p style="font-weight: bold; font-size: large">{{ t("profile.welcome") }}</p>
+        <p style="font-weight: bold; font-size: large">
+          {{ t("profile.welcome") }}
+        </p>
         <p>{{ t("profile.intro") }}</p>
         <p v-html="t('profile.desc')"></p>
         <p>

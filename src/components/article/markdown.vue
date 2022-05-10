@@ -1,20 +1,17 @@
 <script setup lang="ts">
-import { md2HTML } from "../../plugins/markdown";
+import { md2HTML } from '../../plugins/markdown'
 
-const light = () => import("@/styles/light.css");
-const dark = () => import("@/styles/dark.css");
+const light = () => import('@/styles/light.css')
+const dark = () => import('@/styles/dark.css')
 
-const $q = useQuasar();
+const $q = useQuasar()
 
-if ($q.dark.isActive) {
-  dark();
-} else {
-  light();
-}
+if ($q.dark.isActive) dark()
+else light()
 
-const props = defineProps<{ text: string }>();
+const properties = defineProps<{ text: string }>()
 
-const html = md2HTML(props.text);
+const html = md2HTML(properties.text)
 </script>
 
 <template>

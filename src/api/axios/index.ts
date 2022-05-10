@@ -1,12 +1,13 @@
-import axios from "axios";
+import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: (import.meta.env.APP_API_URL as string) || "http://localhost:8080/blog",
+  baseURL: (import.meta.env.APP_API_URL as string) || 'http://localhost:8080/blog',
   timeout: 5000,
   headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
   },
-});
+})
 
-export const req = instance;
+// eslint-disable-next-line unicorn/prevent-abbreviations
+export const req = instance
