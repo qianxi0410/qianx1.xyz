@@ -15,3 +15,8 @@ export interface R<T> {
   data: T
   err: string
 }
+
+export interface Toc {
+  id: string
+  level: number
+}

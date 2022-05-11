@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useToc } from '../../composoable/useToc'
 import { md2HTML } from '../../plugins/markdown'
 
 const light = () => import('@/styles/light.css')
@@ -9,9 +10,18 @@ const $q = useQuasar()
 if ($q.dark.isActive) dark()
 else light()
 
+const scroll = (id: string) => {
+  const element = document.querySelector(`#${id}`)
+  if (element) element.scrollIntoView({ behavior: 'smooth' })
+}
+
 const properties = defineProps<{ text: string }>()
 
 const html = md2HTML(properties.text)
+
+const tocs = useToc()
+
+const { width } = useWindowSize()
 </script>
 
 <template>
@@ -19,6 +29,14 @@ const html = md2HTML(properties.text)
     <div class="col-md-6 col-sm-9 col-xs-10 text-grey">
       <div :class="$q.dark.isActive ? 'dark' : 'white'" v-html="html"></div>
     </div>
+  </div>
+
+  <div v-if="tocs.length > 0 && width > 1100" class="toc">
+    <ul>
+      <li v-for="toc in tocs" :key="toc.id">
+        <span @click="scroll(toc.id)">{{ toc.id }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -108,4 +126,26 @@ const html = md2HTML(properties.text)
   &::after
     content: '"'
     color: $green-3
+
+.toc
+  position: fixed
+  color: $dark
+  right: 5%
+  top: 25%
+  height: 50%
+  transition: all 0.5s ease-in-out
+  font-size: 1.1em
+  &:hover
+    color: $grey
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+    li
+      margin-bottom: 0.6em
+      span
+        &:hover
+          cursor: pointer
+          padding-bottom: -0.1em
+          border-bottom: 0.1em dashed $green-3
 </style>

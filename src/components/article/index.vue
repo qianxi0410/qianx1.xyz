@@ -5,6 +5,7 @@ import {
   evaArrowRightOutline,
 } from '@quasar/extras/eva-icons'
 import { usePost } from '../../composoable/usePost'
+import { useToc } from '../../composoable/useToc'
 import { Post } from '../../types'
 
 const post = reactive<Post>({} as any)
@@ -62,6 +63,10 @@ onMounted(async () => {
   const p = await usePost(id)
   if (!p.id) router.push('/404')
   Object.assign(post, p)
+
+  const tocs = useToc()
+  // eslint-disable-next-line no-console
+  console.log(tocs)
   window.history.pushState(undefined, '', `/posts/${post.display_id}`)
 })
 </script>
@@ -116,3 +121,14 @@ onMounted(async () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

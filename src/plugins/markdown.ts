@@ -1,9 +1,17 @@
 import hljs from 'highlight.js'
 import { marked } from 'marked'
+import { useToc } from '../composoable/useToc'
 
 const renderer: Partial<marked.Renderer> = {
   heading: (text: string, level: number) => {
-    return `<h${level} id="${text}"  class="text-h${level + 1}"><span class="title">${text}</span></h${level}>`
+    const id = text.toLocaleLowerCase().replace(/\s/g, '-')
+    // collect the headings
+    const tocs = useToc()
+    tocs.push({
+      id,
+      level,
+    })
+    return `<h${level} id="${id}" class="text-h${level + 1}"><span class="title">${text}</span></h${level}>`
   },
   paragraph: (text: string) => {
     return `<p class="text-h6">${text}</p>`
