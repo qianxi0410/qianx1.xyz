@@ -26,7 +26,7 @@ const to = (id: string) => {
   <div class="row justify-center">
     <q-card class="col-md-6 col-xs-10 col-sm-9" style="background-color: rgba(0, 0, 0, 0)" flat>
       <q-card-section>
-        <div class="text-h5 q-mt-sm text-grey-7 q-mb-xs">
+        <div class="text-h6 text-grey-7">
           <span class="post-title" @click="to(post.id)">{{ post.title }}</span>
         </div>
         <div class="text-grey text-body1">
