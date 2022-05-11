@@ -30,8 +30,7 @@ jobs:
         version: latest
         run_install: |
           - recursive: true
-            args: [--frozen-lockfile, --strict-peer-dependencies]
-          - args: [--global, gulp, prettier, typescript]
+          - args: [--global, gulp, typescript]
 
     - name: check code quality and format
       run: pnpm run check
