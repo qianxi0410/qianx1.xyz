@@ -12,7 +12,6 @@ type Post struct {
 	Prev       string `json:"prev" gorm:"prev" redis:"prev" form:"prev"`
 	Next       string `json:"next" gorm:"next" redis:"next" form:"next"`
 	DisplayId  string `json:"display_id" gorm:"display_id" redis:"display_id" form:"display_id"`
-	Author     string `json:"author" gorm:"author" redis:"author" form:"author"`
 }
 
 // GetPost get a post from db by ids
@@ -40,14 +39,14 @@ func GetPostWithDisplayId(displayId string) (Post, error) {
 	return post, nil
 }
 
-func GetPosts(offset, size int) ([]Post, error) {
+func GetAllPosts() ([]Post, error) {
 	db, err := Open()
 	if err != nil {
 		return nil, err
 	}
 
 	var posts []Post
-	db.Select([]string{"id", "title", "tags", "create_time"}).Order("create_time desc").Offset(offset).Limit(size).Find(&posts)
+	db.Select([]string{"id", "title", "tags", "create_time"}).Order("create_time desc").Find(&posts)
 
 	return posts, nil
 }
@@ -100,7 +99,6 @@ func DeletePost(id string) error {
 
 		return nil
 	})
-
 }
 
 func UpdatePost(p Post) error {
@@ -136,5 +134,4 @@ func CreatePost(p Post) error {
 
 		return nil
 	})
-
 }

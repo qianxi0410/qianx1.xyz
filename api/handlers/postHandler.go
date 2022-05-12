@@ -1,13 +1,13 @@
 package handlers
 
 import (
-	"api/cache"
-	"api/dao"
-	"api/r"
-	"api/utils"
 	"context"
 	"net/http"
 	"time"
+
+	"api/cache"
+	"api/dao"
+	"api/r"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
@@ -62,7 +62,6 @@ func (p *PostHandler) PostWithDisplayId() gin.HandlerFunc {
 		}
 
 		post, err := dao.GetPostWithDisplayId(id)
-
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
 		}
@@ -73,11 +72,6 @@ func (p *PostHandler) PostWithDisplayId() gin.HandlerFunc {
 
 func (p *PostHandler) Posts() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		page, size := ctx.Param("page"), ctx.Param("size")
-		if page == "" || size == "" {
-			ctx.JSON(http.StatusBadRequest, r.Error[string]("page and size are required"))
-		}
-
 		cli := cache.New()
 		defer cli.Close()
 
@@ -88,26 +82,23 @@ func (p *PostHandler) Posts() gin.HandlerFunc {
 		var posts []dao.Post
 
 		// get posts from cache
-		bytes, err := cli.Get(context.Background(), cache.PostsCacheKey(page, size)).Bytes()
+		bytes, err := cli.Get(context.Background(), cache.PostsCacheKey()).Bytes()
 		if err != nil && err != redis.Nil {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
 		} else if err != nil && err == redis.Nil {
 			// convert page and size to int
-			pageInt, sizeInt, err := utils.ConverPageAndSize(page, size)
 			if err != nil {
 				ctx.JSON(http.StatusBadRequest, r.Error[string]("page and size must be int"))
 			}
 
-			offset := (pageInt - 1) * sizeInt
-
 			// get posts from db
-			posts, err = dao.GetPosts(offset, sizeInt)
+			posts, err = dao.GetAllPosts()
 			if err != nil {
 				ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
 			}
 			// store posts to cache
 			bytes, _ := msgpack.Marshal(posts)
-			cli.Set(context.Background(), cache.PostsCacheKey(page, size), bytes, defaultDuration)
+			cli.Set(context.Background(), cache.PostsCacheKey(), bytes, defaultDuration)
 		} else {
 			msgpack.Unmarshal(bytes, &posts)
 		}
@@ -196,7 +187,7 @@ func (p *PostHandler) UpdatePost() gin.HandlerFunc {
 		// post cache
 		cli.Del(context.Background(), cache.PostCacheKey(post.ID))
 		// list cache
-		keys, _, err := cli.Scan(context.Background(), 0, cache.PostsCacheKey("*", "*"), 0).Result()
+		keys, _, err := cli.Scan(context.Background(), 0, cache.PostsCacheKey(), 0).Result()
 		cli.Del(context.Background(), keys...)
 
 		ctx.JSON(http.StatusOK, r.Ok("update success"))
@@ -223,7 +214,7 @@ func (p *PostHandler) CreatePost() gin.HandlerFunc {
 		}
 
 		// list cache
-		keys, _, err := cli.Scan(context.Background(), 0, cache.PostsCacheKey("*", "*"), 0).Result()
+		keys, _, err := cli.Scan(context.Background(), 0, cache.PostsCacheKey(), 0).Result()
 		cli.Del(context.Background(), keys...)
 
 		// count cache

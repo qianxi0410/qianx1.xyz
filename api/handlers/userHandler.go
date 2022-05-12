@@ -1,11 +1,12 @@
 package handlers
 
 import (
+	"net/http"
+
 	"api/auth"
+	"api/config"
 	"api/dao"
 	"api/r"
-	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +21,7 @@ func (u *UserHandler) Login() gin.HandlerFunc {
 			ctx.JSON(http.StatusBadRequest, r.Error[string]("invalid request"))
 		}
 
-		if user.Name != os.Getenv("USER_NAME") || user.Password != os.Getenv("PASSWORD") {
+		if user.Name != config.USER_NAME || user.Password != config.PASSWORD {
 			ctx.JSON(http.StatusUnauthorized, r.Error[string]("invalid user"))
 		}
 

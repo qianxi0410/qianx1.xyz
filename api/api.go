@@ -1,12 +1,13 @@
 package main
 
 import (
-	"api/handlers"
-	"api/middlewares"
 	"flag"
 	"fmt"
 	"log"
 	"time"
+
+	"api/handlers"
+	"api/middlewares"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -42,7 +43,7 @@ func main() {
 		var postHandler handlers.PostHandler
 		blog.GET("/post/:id", postHandler.Post())
 		blog.GET("post/share/:display_id", postHandler.PostWithDisplayId())
-		blog.GET("/posts/:page/:size", postHandler.Posts())
+		blog.GET("/posts/all", postHandler.Posts())
 		blog.GET("/posts/count", postHandler.Count())
 
 		// need auth router

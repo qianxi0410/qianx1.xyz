@@ -24,3 +24,5 @@ dist-ssr
 .vscode/*
 
 # docker-compose.yml
+
+private.*

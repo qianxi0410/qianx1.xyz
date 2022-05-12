@@ -1,10 +1,11 @@
 package middlewares
 
 import (
-	"api/auth"
-	"api/r"
 	"net/http"
 	"strings"
+
+	"api/auth"
+	"api/r"
 
 	"github.com/gin-gonic/gin"
 )
@@ -34,5 +35,4 @@ func JwtAuthMiddleware() gin.HandlerFunc {
 
 		ctx.Next()
 	}
-
 }
