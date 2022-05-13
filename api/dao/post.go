@@ -135,3 +135,16 @@ func CreatePost(p Post) error {
 		return nil
 	})
 }
+
+func GetAllPostsWithDetail() ([]Post, error) {
+	db, err := Open()
+	if err != nil {
+		return nil, err
+	}
+
+	var posts []Post
+	db.Select([]string{"title", "tags", "create_time", "update_time", "display_id"}).
+		Order("create_time desc").Find(&posts)
+
+	return posts, nil
+}

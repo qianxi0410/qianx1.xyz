@@ -8,6 +8,7 @@ import (
 	"api/cache"
 	"api/dao"
 	"api/r"
+	"api/utils"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
@@ -161,6 +162,11 @@ func (p *PostHandler) DeletePost() gin.HandlerFunc {
 		// post cache
 		cli.Del(context.Background(), cache.PostsCountCacheKey(), cache.PostCacheKey(id))
 
+		err = utils.Rss()
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
+		}
+
 		ctx.JSON(http.StatusOK, r.Ok("delete success"))
 	}
 }
@@ -189,6 +195,11 @@ func (p *PostHandler) UpdatePost() gin.HandlerFunc {
 		// list cache
 		keys, _, err := cli.Scan(context.Background(), 0, cache.PostsCacheKey(), 0).Result()
 		cli.Del(context.Background(), keys...)
+
+		err = utils.Rss()
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
+		}
 
 		ctx.JSON(http.StatusOK, r.Ok("update success"))
 	}
@@ -220,6 +231,10 @@ func (p *PostHandler) CreatePost() gin.HandlerFunc {
 		// count cache
 		cli.Del(context.Background(), cache.PostsCountCacheKey())
 
+		err = utils.Rss()
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
+		}
 		ctx.JSON(http.StatusOK, r.Ok("create success"))
 	}
 }
