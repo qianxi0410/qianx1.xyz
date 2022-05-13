@@ -44,6 +44,14 @@ const toggleLang = () => {
         href="https://www.github.com/qianxi0410"
       />
       <q-btn
+        color="grey"
+        fab
+        flat
+        icon="rss_feed"
+        :ripple="false"
+        href="/feed.xml"
+      ></q-btn>
+      <q-btn
         fab
         :icon="$q.dark.isActive ? evaSunOutline : evaMoonOutline"
         :ripple="false"
