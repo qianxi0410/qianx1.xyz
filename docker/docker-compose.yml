@@ -25,10 +25,10 @@ services:
     ports:
       - 8080:8080
     restart: always
+    volumes:
+      - rss_data:/workdir/rss.xml
     environment:
       - GIN_MODULE=release
-      - USER_NAME=
-      - PASSOWRD=
   
   web:
     image: nginx:latest
@@ -39,7 +39,9 @@ services:
       - ./ssl:/etc/nginx/ssl
       - ./default.conf:/etc/nginx/nginx.conf
       - ./dist:/usr/share/qianxi.me
+      - rss_data:/usr/share/qianxi.me/feed.xml
     restart: always
 
 volumes:
   db_data:
+  rss_data:
