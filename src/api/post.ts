@@ -10,8 +10,8 @@ export const getPostByDisplayId = (id: string) => {
   return request.get(`/post/share/${id}`) as Promise<AxiosResponse<R<Post>>>
 }
 
-export const getPosts = (page: number, size: number) => {
-  return request.get(`/posts/${page}/${size}`) as Promise<AxiosResponse<R<Post[]>>>
+export const getPosts = () => {
+  return request.get('/posts/all') as Promise<AxiosResponse<R<Post[]>>>
 }
 
 export const getTotal = () => {
