@@ -19,6 +19,8 @@ declare module '@vue/runtime-core' {
     Profile: typeof import('./components/profile/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Terminal: typeof import('./views/Terminal.vue')['default']
+    Windows: typeof import('./components/windows/index.vue')['default']
   }
 }
 

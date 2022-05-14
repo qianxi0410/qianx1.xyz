@@ -30,6 +30,14 @@ const toggleLang = () => {
       <q-btn
         flat
         fab
+        icon="terminal"
+        color="grey"
+        :ripple="false"
+        to="/terminal"
+      />
+      <q-btn
+        flat
+        fab
         :icon="evaGlobe2Outline"
         color="grey"
         :ripple="false"
