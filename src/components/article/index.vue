@@ -64,9 +64,6 @@ onMounted(async () => {
   if (!p.id) router.push('/404')
   Object.assign(post, p)
 
-  const tocs = useToc()
-  // eslint-disable-next-line no-console
-  console.log(tocs)
   window.history.pushState(undefined, '', `/posts/${post.display_id}`)
 })
 </script>
