@@ -87,11 +87,6 @@ func (p *PostHandler) Posts() gin.HandlerFunc {
 		if err != nil && err != redis.Nil {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
 		} else if err != nil && err == redis.Nil {
-			// convert page and size to int
-			if err != nil {
-				ctx.JSON(http.StatusBadRequest, r.Error[string]("page and size must be int"))
-			}
-
 			// get posts from db
 			posts, err = dao.GetAllPosts()
 			if err != nil {
