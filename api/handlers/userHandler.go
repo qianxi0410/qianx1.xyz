@@ -19,15 +19,18 @@ func (u *UserHandler) Login() gin.HandlerFunc {
 		err := ctx.ShouldBind(&user)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, r.Error[string]("invalid request"))
+			return
 		}
 
 		if user.Name != config.USER_NAME || user.Password != config.PASSWORD {
 			ctx.JSON(http.StatusUnauthorized, r.Error[string]("invalid user"))
+			return
 		}
 
 		token, err := auth.GenToken(user.Name)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string]("generate token failed"))
+			return
 		}
 
 		ctx.JSON(http.StatusOK, r.Ok(token))
