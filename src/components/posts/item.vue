@@ -1,15 +1,9 @@
 <script lang="ts" setup>
+import { useDate } from '../../composoable/useDate'
 import { Post } from '../../types'
 const blog = defineProps<{ post: Post }>()
 
-const create_date_fmt = computed(() => {
-  const date = new Date(Number(blog.post.create_time) * 1000)
-  const array = date.toDateString().slice(4).split(' ')
-
-  let res = `${array[0]} ${array[1]},${array[2]}`
-  if (date.getFullYear() === new Date().getFullYear()) res = res.slice(0, Math.max(0, res.length - 5))
-  return res
-})
+const create_date_fmt = computed(() => useDate(blog.post.create_time))
 
 const tags = computed(() => {
   if (!blog.post.tags) return []

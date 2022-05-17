@@ -3,7 +3,7 @@ export interface Post {
   title: string
   tags?: string
   create_time: number
-  update_time?: number
+  update_time: number
   content?: string
   prev: string
   next: string

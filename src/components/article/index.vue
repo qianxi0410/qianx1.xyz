@@ -4,20 +4,13 @@ import {
   evaArrowLeftOutline,
   evaArrowRightOutline,
 } from '@quasar/extras/eva-icons'
+import { useDate } from '../../composoable/useDate'
 import { usePost } from '../../composoable/usePost'
-import { useToc } from '../../composoable/useToc'
 import { Post } from '../../types'
 
 const post = reactive<Post>({} as any)
 
-const create_date_fmt = computed(() => {
-  const date = new Date(Number(post.create_time) * 1000)
-  const array = date.toDateString().slice(4).split(' ')
-
-  let res = `${array[0]} ${array[1]},${array[2]}`
-  if (date.getFullYear() === new Date().getFullYear()) res = res.slice(0, Math.max(0, res.length - 5))
-  return res
-})
+const create_date_fmt = computed(() => useDate(post.create_time))
 
 const route = useRoute()
 const router = useRouter()
