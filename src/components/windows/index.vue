@@ -1,6 +1,6 @@
 <script setup lang="ts">import { handle } from './handle'
 
-const prefix = '<span class="text-green">coustom</span>@<span class="text-blue">qianx1.xyz</span> <span class="text-pink">➞</span> '
+const prefix = '<span class="text-green">visitor</span>@<span class="text-blue">qianx1.xyz</span> <span class="text-pink">➞</span> '
 
 const input = ref<HTMLInputElement>()
 const content = ref<HTMLDivElement>()
