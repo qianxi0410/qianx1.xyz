@@ -22,7 +22,6 @@ func init() {
 }
 
 func main() {
-
 	switch *op {
 	case "create":
 		createPost()
@@ -33,5 +32,4 @@ func main() {
 	default:
 		log.Fatalf("unexpected operation: %v", *op)
 	}
-
 }

@@ -10,7 +10,6 @@ import (
 )
 
 func deletePost() {
-
 	token, err := login()
 
 	if err != nil || len(token) == 0 {
@@ -29,7 +28,6 @@ func deletePost() {
 				PerPage: 1,
 			},
 		})
-
 	if err != nil {
 		log.Fatalf("list issues failed: %v", err)
 	}
@@ -52,5 +50,4 @@ func deletePost() {
 	}
 
 	log.Println("create post success")
-
 }
