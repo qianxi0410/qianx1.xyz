@@ -46,7 +46,7 @@ func GetAllPosts() ([]Post, error) {
 	}
 
 	var posts []Post
-	db.Select([]string{"id", "title", "tags", "create_time"}).Order("create_time desc").Find(&posts)
+	db.Select([]string{"id", "title", "tags", "create_time", "update_time", "display_id"}).Order("create_time desc").Find(&posts)
 
 	return posts, nil
 }
