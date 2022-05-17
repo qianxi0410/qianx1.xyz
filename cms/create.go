@@ -32,7 +32,6 @@ func createPost() {
 				PerPage: 1,
 			},
 		})
-
 	if err != nil {
 		log.Fatalf("list issues failed: %v", err)
 	}
@@ -74,6 +73,7 @@ func createPost() {
 		Content:    issue.GetBody(),
 		Tags:       strings.Join(labelNames, "/"),
 		CreateTime: issue.GetCreatedAt().Add(8 * time.Hour).Unix(),
+		UpdateTime: issue.GetUpdatedAt().Add(8 * time.Hour).Unix(),
 		DisplayId:  params[1],
 	}
 
