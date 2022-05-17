@@ -9,6 +9,6 @@ yet another qianxi's personal blog
 - monorepo (yes!)
 - base on GitHub issues sytem (we don't need cms ui anymore)
 - Automatically push articles to server's database
-- containerized
-- Docker compose for container management
+- containerized (Docker compose for container management)
 - whole site https (Filing is disgusting)
+- Terminal style blog viewertermial style
