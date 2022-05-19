@@ -3,9 +3,6 @@ import { useTheme } from '../../composoable/useTheme'
 import { useToc } from '../../composoable/useToc'
 import { md2HTML } from '../../plugins/markdown'
 
-// const light = () => import('@/styles/light.css')
-// const dark = () => import('@/styles/dark.css')
-
 const $q = useQuasar()
 
 if ($q.dark.isActive) useTheme('dark')
