@@ -1,14 +1,20 @@
 <script setup lang="ts">
+import { useTheme } from '../../composoable/useTheme'
 import { useToc } from '../../composoable/useToc'
 import { md2HTML } from '../../plugins/markdown'
 
-const light = () => import('@/styles/light.css')
-const dark = () => import('@/styles/dark.css')
+// const light = () => import('@/styles/light.css')
+// const dark = () => import('@/styles/dark.css')
 
 const $q = useQuasar()
 
-if ($q.dark.isActive) dark()
-else light()
+if ($q.dark.isActive) useTheme('dark')
+else useTheme('light')
+
+watch(() => $q.dark.isActive, (val) => {
+  if (val) useTheme('dark')
+  else useTheme('light')
+})
 
 const scroll = (id: string) => {
   const element = document.querySelector(`#${id}`)
