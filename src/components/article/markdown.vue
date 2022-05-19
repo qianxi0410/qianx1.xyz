@@ -32,7 +32,7 @@ const { width } = useWindowSize()
 
 <template>
   <div class="row justify-center container" style="margin-top: 40px">
-    <div class="col-md-6 col-sm-9 col-xs-10 text-grey">
+    <div class="col-md-6 col-sm-9 col-xs-10" :class="$q.dark.isActive ? 'text-grey' : 'text-grey-8'">
       <div :class="$q.dark.isActive ? 'dark' : 'white'" v-html="html"></div>
     </div>
   </div>
