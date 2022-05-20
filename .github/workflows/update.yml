@@ -2,10 +2,10 @@ name: Update a post
 
 on:
   issues:
-    types:
-      - "edited"
+    types: ["edited", "labeled"]
     labels: 
       - "post"
+    
 
 jobs:
 
