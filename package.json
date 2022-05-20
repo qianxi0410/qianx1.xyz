@@ -13,21 +13,22 @@
     "check": "eslint --fix '**/*.{ts,js,vue}'"
   },
   "dependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^3.4.0",
     "@quasar/extras": "^1.13.6",
+    "@quasar/vite-plugin": "^1.0.9",
     "@types/marked": "^4.0.3",
+    "@vitejs/plugin-vue": "^2.3.3",
     "@vueuse/core": "^8.5.0",
     "axios": "^0.27.2",
+    "gitalk": "^1.7.2",
     "highlight.js": "^11.5.1",
     "marked": "^4.0.15",
     "pinia": "^2.0.14",
     "quasar": "^2.6.6",
+    "vite": "^2.9.9",
     "vue": "^3.2.33",
     "vue-i18n": "^9.1.10",
-    "vue-router": "^4.0.15",
-    "@quasar/vite-plugin": "^1.0.9",
-    "@vitejs/plugin-vue": "^2.3.3",
-    "vite": "^2.9.9",
-    "@intlify/vite-plugin-vue-i18n": "^3.4.0"
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@qianxi0410/eslint-config": "^4.2.0",

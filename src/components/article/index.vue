@@ -8,6 +8,10 @@ import { useDate } from '../../composoable/useDate'
 import { usePost } from '../../composoable/usePost'
 import { Post } from '../../types'
 
+import 'gitalk/dist/gitalk.css'
+// eslint-disable-next-line import/order
+import Gitalk from 'gitalk'
+
 const post = reactive<Post>({} as any)
 
 const create_date_fmt = computed(() => useDate(post.create_time))
@@ -27,6 +31,24 @@ const cancel = watch(
 
     Object.assign(post, p)
     window.history.pushState(undefined, '', `/posts/${post.display_id}`)
+
+    const gitalk = new Gitalk({
+      clientID: '7664bc6e77631a0f7248',
+      clientSecret: '292392a4457cc2fdb5ff03b6164ae635a476dab5',
+      repo: 'qianx1.xyz',
+      owner: 'qianxi0410',
+      admin: ['qianxi0410'],
+      labels: ['post'],
+      distractionFreeMode: false,
+      id: p.display_id,
+      title: `[${p.display_id}] ${p.title}`,
+    })
+
+    // re-render gitalk
+    const el = document.querySelector('#gitalk-container')
+    el!.innerHTML = ''
+
+    gitalk.render('gitalk-container')
   },
 )
 
@@ -56,9 +78,23 @@ onMounted(async () => {
   const p = await usePost(id)
   if (!p.id) router.push('/404')
   Object.assign(post, p)
-
   window.history.pushState(undefined, '', `/posts/${post.display_id}`)
+
+  const gitalk = new Gitalk({
+    clientID: '7664bc6e77631a0f7248',
+    clientSecret: '292392a4457cc2fdb5ff03b6164ae635a476dab5',
+    repo: 'qianx1.xyz',
+    owner: 'qianxi0410',
+    admin: ['qianxi0410'],
+    labels: ['post'],
+    id: p.display_id,
+    title: `[${p.display_id}] ${p.title}`,
+    distractionFreeMode: false,
+  })
+
+  gitalk.render('gitalk-container')
 })
+
 </script>
 
 <template>
@@ -108,6 +144,13 @@ onMounted(async () => {
         >
         </q-btn>
       </q-toolbar>
+    </div>
+  </div>
+  <div class="row justify-center">
+    <div
+      id="gitalk-container"
+      class="col-md-6 col-sm-9 col-xs-10 text-grey bg-dark"
+    >
     </div>
   </div>
 </template>

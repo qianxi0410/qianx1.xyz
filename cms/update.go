@@ -14,7 +14,6 @@ import (
 )
 
 func updatePost() {
-
 	token, err := login()
 
 	if err != nil || len(token) == 0 {
@@ -33,7 +32,6 @@ func updatePost() {
 				PerPage: 1,
 			},
 		})
-
 	if err != nil {
 		log.Fatalf("list issues failed: %v", err)
 	}
@@ -57,16 +55,19 @@ func updatePost() {
 		log.Fatalf("unmarshal labels failed: %v", err)
 	}
 
-	labelNames := make([]string, 0, len(labels)-1)
-	for i := 1; i < len(labels); i++ {
-		labelNames = append(labelNames, labels[i].Name)
-	}
-
 	reg := regexp.MustCompile("\\[([a-zA-Z0-9-_!]+)\\] ([\u4e00-\u9fa5_a-zA-Z0-9!\\s]+)")
 	params := reg.FindStringSubmatch(issue.GetTitle())
 
 	if len(params) != 3 {
 		log.Fatalf("invalid issue title: %s", issue.GetTitle())
+	}
+
+	labelNames := make([]string, 0, len(labels))
+	for i := 0; i < len(labels); i++ {
+		if labels[i].Name == "post" || labels[i].Name == params[1] {
+			continue
+		}
+		labelNames = append(labelNames, labels[i].Name)
 	}
 
 	post := Post{
@@ -91,5 +92,4 @@ func updatePost() {
 	}
 
 	log.Println("create post success")
-
 }
