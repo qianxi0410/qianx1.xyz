@@ -12,3 +12,4 @@ yet another qianxi's personal blog
 - containerized (Docker compose for container management)
 - whole site https (Filing is disgusting)
 - Terminal style blog viewertermial style
+- Commnet system base on github issue comment
