@@ -19,7 +19,7 @@ const { t } = useI18n()
       </p>
     </div>
     <!-- desc -->
-    <div class="row justify-center q-mt-md text-grey-7" style="font-size: 1.2em">
+    <div class="row justify-center q-mt-md" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-10'" style="font-size: 1.2em">
       <div class="col-md-6 col-sm-9 col-xs-10">
         <p style="font-weight: bold; font-size: large">
           {{ t("profile.welcome") }}
