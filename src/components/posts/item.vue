@@ -21,7 +21,7 @@ const to = (id: string) => {
     <q-card class="col-md-6 col-xs-10 col-sm-9" style="background-color: rgba(0, 0, 0, 0)" flat>
       <q-card-section>
         <div class="text-h6 text-grey-7">
-          <span class="post-title" @click="to(post.id)">{{ post.title }}</span>
+          <span class="post-title" @click="to(post.display_id)">{{ post.title }}</span>
         </div>
         <div class="text-grey text-body1">
           {{ create_date_fmt }}

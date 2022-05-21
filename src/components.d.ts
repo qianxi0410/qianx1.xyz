@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     Banner: typeof import('./components/banner/index.vue')['default']
     Blog: typeof import('./views/Blog.vue')['default']
     Blossom: typeof import('./components/blossom/index.vue')['default']
+    Comment: typeof import('./components/article/comment.vue')['default']
     Footer: typeof import('./components/footer/index.vue')['default']
     Index: typeof import('./views/Index.vue')['default']
     Item: typeof import('./components/posts/item.vue')['default']

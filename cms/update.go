@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"log"
 	"regexp"
@@ -40,20 +39,7 @@ func updatePost() {
 		log.Fatalln("no issue found")
 	}
 
-	req := resty.New()
-
 	issue := issues[0]
-	labelUrl := issue.GetLabelsURL()
-
-	resp, err := req.R().Get(labelUrl[:len(labelUrl)-7])
-	if err != nil {
-		log.Fatalf("get labels failed: %v", err)
-	}
-
-	var labels []Label
-	if err := json.Unmarshal(resp.Body(), &labels); err != nil || len(labels) == 0 {
-		log.Fatalf("unmarshal labels failed: %v", err)
-	}
 
 	reg := regexp.MustCompile("\\[([a-zA-Z0-9-_!]+)\\] ([\u4e00-\u9fa5_a-zA-Z0-9!\\s]+)")
 	params := reg.FindStringSubmatch(issue.GetTitle())
@@ -62,24 +48,33 @@ func updatePost() {
 		log.Fatalf("invalid issue title: %s", issue.GetTitle())
 	}
 
-	labelNames := make([]string, 0, len(labels))
-	for i := 0; i < len(labels); i++ {
-		if labels[i].Name == "post" || labels[i].Name == params[1] {
+	labelNames := make([]string, 0, len(issue.Labels))
+	flag := false
+	for _, label := range issue.Labels {
+		if label.GetName() == "post" {
+			flag = true
 			continue
 		}
-		labelNames = append(labelNames, labels[i].Name)
+		labelNames = append(labelNames, label.GetName())
+	}
+
+	if !flag {
+		log.Println("no post label found, so don't update post")
+		return
 	}
 
 	post := Post{
-		ID:         fmt.Sprintf("%d", issue.GetID()),
-		Title:      params[2],
-		Content:    issue.GetBody(),
-		Tags:       strings.Join(labelNames, "/"),
-		CreateTime: issue.GetCreatedAt().Add(8 * time.Hour).Unix(),
-		UpdateTime: issue.GetUpdatedAt().Add(8 * time.Hour).Unix(),
-		DisplayId:  params[1],
+		ID:          fmt.Sprintf("%d", issue.GetID()),
+		Title:       params[2],
+		Content:     issue.GetBody(),
+		Tags:        strings.Join(labelNames, "/"),
+		CreateTime:  issue.GetCreatedAt().Add(8 * time.Hour).Unix(),
+		UpdateTime:  issue.GetUpdatedAt().Add(8 * time.Hour).Unix(),
+		DisplayId:   params[1],
+		IssueNumber: issue.GetNumber(),
 	}
 
+	req := resty.New()
 	_, err = req.
 		R().
 		SetHeader("Content-Type", "application/json").

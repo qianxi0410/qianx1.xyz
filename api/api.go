@@ -42,7 +42,7 @@ func main() {
 	{
 		var postHandler handlers.PostHandler
 		blog.GET("/post/:id", postHandler.Post())
-		blog.GET("post/share/:display_id", postHandler.PostWithDisplayId())
+		blog.GET("/post/share/:display_id", postHandler.PostWithDisplayId())
 		blog.GET("/posts/all", postHandler.Posts())
 		blog.GET("/posts/count", postHandler.Count())
 

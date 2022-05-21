@@ -8,6 +8,7 @@ export interface Post {
   prev: string
   next: string
   display_id: string
+  issue_number: number
 }
 
 export interface R<T> {

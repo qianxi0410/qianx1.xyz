@@ -67,10 +67,30 @@ func (p *PostHandler) PostWithDisplayId() gin.HandlerFunc {
 			return
 		}
 
-		post, err := dao.GetPostWithDisplayId(id)
-		if err != nil {
+		cli := cache.New()
+		defer cli.Close()
+
+		if cli == nil {
+			ctx.JSON(http.StatusInternalServerError, r.Error[string]("redis client is nil"))
+			return
+		}
+
+		var post dao.Post
+		bytes, err := cli.Get(context.Background(), cache.PostCacheKey(id)).Bytes()
+
+		if err != nil && err != redis.Nil {
 			ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
 			return
+		} else if err != nil && err == redis.Nil {
+			post, err = dao.GetPostWithDisplayId(id)
+			if err != nil {
+				ctx.JSON(http.StatusInternalServerError, r.Error[string](err.Error()))
+				return
+			}
+			bytes, _ := msgpack.Marshal(post)
+			cli.Set(context.Background(), cache.PostCacheKey(id), bytes, defaultDuration)
+		} else {
+			msgpack.Unmarshal(bytes, &post)
 		}
 
 		ctx.JSON(http.StatusOK, r.Ok(post))

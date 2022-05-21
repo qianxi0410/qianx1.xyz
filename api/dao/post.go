@@ -3,15 +3,16 @@ package dao
 import "gorm.io/gorm"
 
 type Post struct {
-	ID         string `json:"id" gorm:"primaryKey" redis:"id" form:"id"`
-	Title      string `json:"title" gorm:"title" redis:"title" form:"title"`
-	Tags       string `json:"tags" gorm:"tags" redis:"tags" form:"tags"`
-	CreateTime int64  `json:"create_time" gorm:"create_time" redis:"create_time" form:"create_time"`
-	UpdateTime int64  `json:"update_time" gorm:"update_time" redis:"update_time" form:"update_time"`
-	Content    string `json:"content" gorm:"content" redis:"content" form:"content"`
-	Prev       string `json:"prev" gorm:"prev" redis:"prev" form:"prev"`
-	Next       string `json:"next" gorm:"next" redis:"next" form:"next"`
-	DisplayId  string `json:"display_id" gorm:"display_id" redis:"display_id" form:"display_id"`
+	ID          string `json:"id" gorm:"primaryKey" redis:"id" form:"id"`
+	Title       string `json:"title" gorm:"title" redis:"title" form:"title"`
+	Tags        string `json:"tags" gorm:"tags" redis:"tags" form:"tags"`
+	CreateTime  int64  `json:"create_time" gorm:"create_time" redis:"create_time" form:"create_time"`
+	UpdateTime  int64  `json:"update_time" gorm:"update_time" redis:"update_time" form:"update_time"`
+	Content     string `json:"content" gorm:"content" redis:"content" form:"content"`
+	Prev        string `json:"prev" gorm:"prev" redis:"prev" form:"prev"`
+	Next        string `json:"next" gorm:"next" redis:"next" form:"next"`
+	DisplayId   string `json:"display_id" gorm:"display_id" redis:"display_id" form:"display_id"`
+	IssueNumber int    `json:"issue_number" gorm:"issue_number" redis:"issue_number" form:"issue_number"`
 }
 
 // GetPost get a post from db by ids
@@ -125,8 +126,8 @@ func CreatePost(p Post) error {
 			var next Post
 			tx.Order("create_time desc").First(&next)
 			if next.ID != "" {
-				p.Next = next.ID
-				next.Prev = p.ID
+				p.Next = next.DisplayId
+				next.Prev = p.DisplayId
 				tx.Save(next)
 			}
 		}
